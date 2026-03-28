@@ -1,0 +1,31 @@
+# --- CLion & JetBrains ---
+.idea/
+cmake-build-debug/
+cmake-build-release/
+*.iws
+*.iml
+*.ipr
+
+# --- CMake & Compilation ---
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+/build/
+
+# The compiled executable
+myProg
+
+# --- Project Outputs ---
+*.csv
+!datasets/*.csv    # DO NOT ignore the provided input datasets
+"assign.csv"       # Default output file mentioned in Task 3 [cite: 61]
+"output.csv"       # Default output if not specified [cite: 85]
+
+# --- Documentation ---
+/Documentation/
+Doxyfile.bak
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
