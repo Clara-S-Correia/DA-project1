@@ -24,7 +24,7 @@ struct Reviewers {
 struct projectConfig {
     int minReviewsPerSubmission = 0;
     //added the rest of parameters here! :)
-    int maxReviewsPerSubmission = 0;
+    int maxReviewsPerReviewer = 0;
     int primaryReviewerExpertises = 0;
     int secondaryReviewerExpertise = 0;
     int primarySubmissionDomain = 0;

@@ -59,7 +59,7 @@ void parser(const std::string& filename, projectData& data) {
             else if (mode == 3 || mode == 4) {
                 if (row.size() < 2) continue;
                 if (row[0] == "MinReviewsPerSubmission") data.config.minReviewsPerSubmission = std::stoi(row[1]);
-                if (row[0] == "MaxReviewsPerReviewer") data.config.maxReviewsPerSubmission = std::stoi(row[1]);
+                if (row[0] == "MaxReviewsPerReviewer") data.config.maxReviewsPerReviewer = std::stoi(row[1]);
                 if (row[0] == "PrimaryReviewerExpertise") data.config.primaryReviewerExpertises = std::stoi(row[1]);
                 if (row[0] == "SecondaryReviewerExpertise") data.config.secondaryReviewerExpertise = std::stoi(row[1]);
                 if (row[0] == "PrimarySubmissionDomain") data.config.primarySubmissionDomain = std::stoi(row[1]);

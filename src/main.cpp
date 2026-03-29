@@ -20,7 +20,7 @@ int main() {
 
     std::cout << "conf:" << std::endl;
     std::cout << "min revs: " << data.config.minReviewsPerSubmission << std::endl;
-    std::cout << "max revs: " << data.config.maxReviewsPerSubmission << std::endl;
+    std::cout << "max revs: " << data.config.maxReviewsPerReviewer << std::endl;
     std::cout << "gen assignments: " << data.config.generateAssignments << std::endl;
 
     return 0;
