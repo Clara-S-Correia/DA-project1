@@ -1,16 +1,27 @@
 #include <iostream>
+#include "dataStructures.h"
+#include "parser.h"
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    projectData data;
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
+    parser("/home/esha-naveed/Desktop/DA_PT/DA-project1/dataset/input/dataset2.csv", data);
+
+    std::cout << "checking if data rewading test" << std::endl;
+    std::cout << "submissions: " << data.submissions.size() << std::endl;
+    for (const auto& s : data.submissions) {
+        std::cout << "id: " << s.id << " - title: " << s.title << std::endl;
     }
 
+    std::cout << "revs: " << data.reviewers.size() << std::endl;
+    for (const auto& r : data.reviewers) {
+        std::cout << "id: " << r.id << std::endl;
+    }
+
+    std::cout << "conf:" << std::endl;
+    std::cout << "min revs: " << data.config.minReviewsPerSubmission << std::endl;
+    std::cout << "max revs: " << data.config.maxReviewsPerSubmission << std::endl;
+    std::cout << "gen assignments: " << data.config.generateAssignments << std::endl;
+
     return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
 }

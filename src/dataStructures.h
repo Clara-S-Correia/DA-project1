@@ -23,7 +23,12 @@ struct Reviewers {
 //global configuration, from #parameters and #control
 struct projectConfig {
     int minReviewsPerSubmission = 0;
+    //added the rest of parameters here! :)
     int maxReviewsPerSubmission = 0;
+    int primaryReviewerExpertises = 0;
+    int secondaryReviewerExpertise = 0;
+    int primarySubmissionDomain = 0;
+    int secondarySubmissionDomain = 0;
     int generateAssignments = 0; //mode 1, 2 or 3
     int riskAnalysis = 0; //0 or 1
     std::string outputFileName;

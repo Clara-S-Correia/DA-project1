@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/esha-naveed/Desktop/DA_PT/DA-project1/cmake-build-debug",
+  "command": "/usr/bin/c++   -g -fdiagnostics-color=always -o CMakeFiles/DA_project1.dir/src/main.cpp.o -c /home/esha-naveed/Desktop/DA_PT/DA-project1/src/main.cpp",
+  "file": "/home/esha-naveed/Desktop/DA_PT/DA-project1/src/main.cpp",
+  "output": "CMakeFiles/DA_project1.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/esha-naveed/Desktop/DA_PT/DA-project1/cmake-build-debug",
+  "command": "/usr/bin/c++   -g -fdiagnostics-color=always -o CMakeFiles/DA_project1.dir/src/parser.cpp.o -c /home/esha-naveed/Desktop/DA_PT/DA-project1/src/parser.cpp",
+  "file": "/home/esha-naveed/Desktop/DA_PT/DA-project1/src/parser.cpp",
+  "output": "CMakeFiles/DA_project1.dir/src/parser.cpp.o"
+}
+]
