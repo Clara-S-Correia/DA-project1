@@ -94,7 +94,8 @@
 				2,
 				3,
 				4,
-				5
+				5,
+				8
 			]
 		}
 	],
@@ -143,6 +144,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/code.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/algorithm.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

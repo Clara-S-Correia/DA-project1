@@ -39,11 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "DA_project1::@6890427a1f51a3e7e1df",
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-e7bff15dba8c7a3bcbcf.json
-					"jsonFile" : "target-DA_project1-Debug-9f3874754b429c47543b.json",
-========
-					"jsonFile" : "target-DA_project1-Debug-391ebf8bfb5fbffe448e.json",
->>>>>>>> 9c926ad (finished the algorithm! :)):cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-200c2555d824ab57e49b.json
+					"jsonFile" : "target-DA_project1-Debug-d71cae2aa9cf25136cba.json",
 					"name" : "DA_project1",
 					"projectIndex" : 0
 				}
