@@ -23,7 +23,7 @@ public:
      * @brief Transforms parsed ProjectData into a directed Flow Graph.
      * * This function creates a source node, a sink node, and nodes for all
      * reviewers and submissions. It adds edges with capacities based on
-     * expertise matching (Task 2.1).
+     * expertise matching.
      * * @param data The projectData structure containing all reviewers and papers.
      * @return A Graph object configured for the Max-Flow algorithm.
      * * @time_complexity O(R * S) where R is the number of reviewers and S is
