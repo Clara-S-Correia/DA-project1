@@ -1,0 +1,72 @@
+\doxysection{create\+Graph Class Reference}
+\hypertarget{classcreate_graph}{}\label{classcreate_graph}\index{createGraph@{createGraph}}
+
+
+Provides static methods to transform project data into a flow network.  
+
+
+
+
+{\ttfamily \+\#include $<$create\+Graph.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \doxymbox{\hyperlink{classcreate_graph_aa77784249f6468a1d38876487f94f25d}{build\+Graph}} (\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&data)
+\begin{DoxyCompactList}\small\item\em Transforms parsed Project\+Data into a directed Flow \doxylink{class_graph}{Graph}. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{classcreate_graph_a42fbbcd642d0782e83cfbf369717733d}{output\+\_\+file}} (\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&data, \doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&g)
+\begin{DoxyCompactList}\small\item\em Exports assignment results and risk analysis to a CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides static methods to transform project data into a flow network. 
+
+\label{doc-func-members}
+\Hypertarget{classcreate_graph_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcreate_graph_aa77784249f6468a1d38876487f94f25d}\index{createGraph@{createGraph}!buildGraph@{buildGraph}}
+\index{buildGraph@{buildGraph}!createGraph@{createGraph}}
+\doxysubsubsection{\texorpdfstring{buildGraph()}{buildGraph()}}
+{\footnotesize\ttfamily \label{classcreate_graph_aa77784249f6468a1d38876487f94f25d} 
+\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ create\+Graph::\+build\+Graph (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Transforms parsed Project\+Data into a directed Flow \doxylink{class_graph}{Graph}. 
+
+
+\begin{DoxyItemize}
+\item This function creates a source node, a sink node, and nodes for all reviewers and submissions. It adds edges with capacities based on expertise matching.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em data} & The \doxylink{structproject_data}{project\+Data} structure containing all reviewers and papers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{class_graph}{Graph} object configured for the Max-\/\+Flow algorithm.
+\end{DoxyReturn}
+
+\item @time\+\_\+complexity O(\+R \texorpdfstring{$\ast$}{*} S) where R is the number of reviewers and S is the number of submissions, as we must check matches for every pair. @space\+\_\+complexity O(V + E) where V = R + S + 2 and E is the number of valid matches. 
+\end{DoxyItemize}\Hypertarget{classcreate_graph_a42fbbcd642d0782e83cfbf369717733d}\index{createGraph@{createGraph}!output\_file@{output\_file}}
+\index{output\_file@{output\_file}!createGraph@{createGraph}}
+\doxysubsubsection{\texorpdfstring{output\_file()}{output\_file()}}
+{\footnotesize\ttfamily \label{classcreate_graph_a42fbbcd642d0782e83cfbf369717733d} 
+void create\+Graph::\+output\+\_\+file (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&}]{data}{, }\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&}]{g}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Exports assignment results and risk analysis to a CSV file. 
+
+Traverses the graph to identify edges with positive flow. It generates lists of assignments, calculates total matches, and identifies "{}\+Risk"{} submissions that did not meet the minimum review requirement. 
+\begin{DoxyParams}{Parameters}
+{\em data} & The \doxylink{structproject_data}{project\+Data} structure for mapping node IDs to real IDs. \\
+\hline
+{\em g} & The \doxylink{class_graph}{Graph} after the Edmonds-\/\+Karp algorithm has been executed. @time\+\_\+complexity O(V + E) to traverse the graph and check edge flows. \\
+\hline
+\end{DoxyParams}
+conditions in if if there is flow (\texorpdfstring{$>$}{>}0) edge is -\/\texorpdfstring{$>$}{>} a arev, moving to sub com higer id, since subs 1st then revs stops at revs -\/ to not count sink
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{create_graph_8h}{create\+Graph.\+h}}\item 
+src/\+\doxymbox{\hyperlink{create_graph_8cpp}{create\+Graph.\+cpp}}\end{DoxyCompactItemize}

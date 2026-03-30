@@ -1,0 +1,116 @@
+\doxysection{algorithm.\+h}
+\hypertarget{algorithm_8h_source}{}\label{algorithm_8h_source}\index{src/algorithm.h@{src/algorithm.h}}
+\doxymbox{\hyperlink{algorithm_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ DA\_PROJECT1\_ALGORITHM\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ DA\_PROJECT1\_ALGORITHM\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{graph_8h}{graph.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00018\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ Purpose:\ matching\ submission\ to\ reviewers\ based\ on\ expertise(primary/secondary)}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ BFS\_part:\ searches\ the\ graph\ to\ find\ the\ path\ from\ start(source\ S)\ to\ the\ end(sink\ T)}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ rules:\ path\ is\ only\ made\ with\ routes\ that\ still\ have\ capacity}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ if\ a\ path\ is\ not\ found\ -\/\ means\ that\ max\ num\ of\ reviews\ assigned}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ Edmonds-\/karp:\ once\ a\ path\ is\ found\ by\ BFS\_path,\ it\ calculates\ the\ n\_min-\/>\ also\ called\ Bottleneck}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ n\_min\ is\ the\ smallest\ space\ left}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ it\ adds\ the\ flow\ to\ every\ path\ and\ also\ unpadtes\ thr\ reverse\ paths}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ in\ case\ a\ diffenret\ match\ needs\ to\ be\ made}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ INF\ std::numeric\_limits<double>::max()}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//infinity\ -\/\ copied\ from\ graph.h.\ is\ the\ max\ possible\ value}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//so\ any\ capacity\ found\ is\ smaller\ than\ this}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//capacity\ -\/\ size\ of\ the\ pipe}}
+\DoxyCodeLine{00048\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ from\ S\ to\ subs\ -\/>\ cap\ is\ no.\ of\ reviews\ a\ sub\ needs}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ *\ rev\ to\ T\ -\/>\ cap\ is\ max\ reviews\ by\ each\ rev}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ *\ sub\ to\ rev\ -\/>\ 1,\ since\ same\ sub\ cannot\ be\ reviewed\ by\ same\ rev}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//flow\ -\/\ amount\ passing\ through}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//base\ structure\ for\ this\ in\ WS3-\/Ex5}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{algorithm_8h_a17bbd0ba390db5084a4f0dc1968d322f}{BFS\_part}}(\doxymbox{\hyperlink{class_graph}{Graph<T>}}\ *g,\ \doxymbox{\hyperlink{class_vertex}{Vertex<T>}}\ *s,\ \doxymbox{\hyperlink{class_vertex}{Vertex<T>}}\ *t)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Mark\ all\ vertices\ as\ not\ visited}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ v\ :\ g-\/>\doxymbox{\hyperlink{class_graph_a41624b03fcb6bd29e4df574a1ec58541}{getVertexSet}}())\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{false});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ v-\/>setPath(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Mark\ the\ source\ vertex\ as\ visited\ and\ enqueue\ it}}
+\DoxyCodeLine{00064\ \ \ \ \ s-\/>\doxymbox{\hyperlink{class_vertex_a95a3f3c55f2ba371fae51d3fe0e76c23}{setVisited}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00065\ \ \ \ \ std::queue<Vertex<T>\ *>\ q;}
+\DoxyCodeLine{00066\ \ \ \ \ q.push(s);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ BFS\ to\ find\ an\ augmenting\ path}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{while}(!q.empty())\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ q.front();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ q.pop();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ e:\ v-\/>getAdj())\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ w\ =\ e-\/>getDest();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//residual\ capacity:\ Capacity-\/Flow\ >\ 0}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ residual\ =\ e-\/>getCapacity()-\/\ e-\/>getFlow();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ !w-\/>isVisited()\ \&\&\ residual>0)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w-\/>setVisited(\textcolor{keyword}{true});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w-\/>setPath(e);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.push(w);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ path\ is\ made\ to\ the\ sink(T)}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ ==\ t)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Return\ true\ if\ a\ path\ to\ the\ target\ is\ found,\ false\ otherwise}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ t-\/>\doxymbox{\hyperlink{class_vertex_aa2bb17f6ebd98a67f8da1f689b22fadc}{isVisited}}();}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{algorithm_8h_aa3609a09123eb68f5b66d2899bb4dd8b}{Edmonds\_karp}}(\doxymbox{\hyperlink{class_graph}{Graph<T>}}\ *g,\ T\ source,\ T\ sink)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \doxymbox{\hyperlink{class_vertex}{Vertex<T>}}\ *s\ =\ g-\/>\doxymbox{\hyperlink{class_graph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(source);}
+\DoxyCodeLine{00106\ \ \ \ \ \doxymbox{\hyperlink{class_vertex}{Vertex<T>}}\ *t\ =\ g-\/>\doxymbox{\hyperlink{class_graph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(sink);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//in\ case\ parser\ fails,\ findVertex\ will\ return\ nullptr\ thuis\ checking}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (s==\textcolor{keyword}{nullptr}\ ||\ t==\textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//while\ bfs(graph,\ source,\ sink)}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{while}\ (\doxymbox{\hyperlink{algorithm_8h_a17bbd0ba390db5084a4f0dc1968d322f}{BFS\_part}}(g,\ s,\ t))\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ n\_min\ =\ \doxymbox{\hyperlink{algorithm_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//looking\ for\ n\_max\ capacity\ of\ path\ by\ bfs}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v=t\ ;\ v!=s;\ )\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//starting\ from\ sink,\ until\ the\ source}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ e\ =\ v-\/>getPath();\textcolor{comment}{//get\ edge\ of\ vertex\ v}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ n\_min\ =\ min(n\_min,\ e-\/>getCapacity()-\/e-\/>getFlow());\textcolor{comment}{//getting\ smaller\ one,\ the\ current\ max\ or\ the\ path\ found}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ v=e-\/>getOrig();\textcolor{comment}{//moving\ backwards\ -\/\ getting\ the\ original}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v=t\ ;\ v!=s;\ )\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ e\ =\ v-\/>getPath();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//adding\ flow\ to\ the\ forward\ edge}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>setFlow(e-\/>getFlow()\ +\ n\_min);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//setting\ flow\ to\ -\/>\ the\ initial\ flow\ at\ the\ edge+cureent\ min\ path}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//minus\ flow\ from\ the\ prev\ edge}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ rev\ =\ e-\/>getReverse();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rev!=\textcolor{keyword}{nullptr})\ rev-\/>setFlow(rev-\/>getFlow()\ -\/\ n\_min);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//setting\ flow\ to-\/>\ the\ prev\ flow-\/min\ path}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ v=e-\/>getOrig();}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DA\_PROJECT1\_ALGORITHM\_H}}
+
+\end{DoxyCode}

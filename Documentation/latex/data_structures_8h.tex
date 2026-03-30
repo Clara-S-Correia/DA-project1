@@ -1,0 +1,27 @@
+\doxysection{src/\+data\+Structures.h File Reference}
+\hypertarget{data_structures_8h}{}\label{data_structures_8h}\index{src/dataStructures.h@{src/dataStructures.h}}
+
+
+Global data structures for the project.  
+
+
+{\ttfamily \+\#include $<$map$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_submission}{Submission}}
+\begin{DoxyCompactList}\small\item\em Represents a paper submitted to the conference. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_reviewers}{Reviewers}}
+\begin{DoxyCompactList}\small\item\em Represents a conference reviewer and their expertise. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{structproject_config}{project\+Config}}
+\begin{DoxyCompactList}\small\item\em Global settings parsed from the \+\#\+Parameters and \+\#\+Control sections. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{structproject_data}{project\+Data}}
+\begin{DoxyCompactList}\small\item\em The "{}\+Master"{} container that holds all project state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global data structures for the project. 
+
+Defines the core entities (Submissions, \doxylink{struct_reviewers}{Reviewers}) and the configuration settings used across the project. 

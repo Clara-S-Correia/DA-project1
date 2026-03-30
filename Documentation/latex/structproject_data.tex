@@ -1,0 +1,65 @@
+\doxysection{project\+Data Struct Reference}
+\hypertarget{structproject_data}{}\label{structproject_data}\index{projectData@{projectData}}
+
+
+The "{}\+Master"{} container that holds all project state.  
+
+
+
+
+{\ttfamily \+\#include $<$data\+Structures.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_submission}{Submission}} $>$ \doxymbox{\hyperlink{structproject_data_a88637351ac6f0637a88385717236d85f}{submissions}}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_reviewers}{Reviewers}} $>$ \doxymbox{\hyperlink{structproject_data_ac2fc2ca190f0786ec694519b9bd25849}{reviewers}}
+\item 
+\doxymbox{\hyperlink{structproject_config}{project\+Config}} \doxymbox{\hyperlink{structproject_data_a8eb94451afb78fe44879331a0ff4f998}{config}}
+\item 
+std::\+map$<$ int, int $>$ \doxymbox{\hyperlink{structproject_data_a048ec0b87c727cb52a99587a911d67e6}{node\+To\+Real\+ID}}
+\begin{DoxyCompactList}\small\item\em Maps internal \doxylink{class_graph}{Graph} node IDs back to real Submission/\+\+Reviewer IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The "{}\+Master"{} container that holds all project state. 
+
+This is passed by reference to the Parser and \doxylink{class_graph}{Graph} Creator. 
+
+\label{doc-variable-members}
+\Hypertarget{structproject_data_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structproject_data_a8eb94451afb78fe44879331a0ff4f998}\index{projectData@{projectData}!config@{config}}
+\index{config@{config}!projectData@{projectData}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \label{structproject_data_a8eb94451afb78fe44879331a0ff4f998} 
+\doxymbox{\hyperlink{structproject_config}{project\+Config}} project\+Data::\+config}
+
+\Hypertarget{structproject_data_a048ec0b87c727cb52a99587a911d67e6}\index{projectData@{projectData}!nodeToRealID@{nodeToRealID}}
+\index{nodeToRealID@{nodeToRealID}!projectData@{projectData}}
+\doxysubsubsection{\texorpdfstring{nodeToRealID}{nodeToRealID}}
+{\footnotesize\ttfamily \label{structproject_data_a048ec0b87c727cb52a99587a911d67e6} 
+std::\+map$<$int, int$>$ project\+Data::\+node\+To\+Real\+ID}
+
+
+
+Maps internal \doxylink{class_graph}{Graph} node IDs back to real Submission/\+\+Reviewer IDs. 
+
+Crucial for:\+ translating the Max-\/\+Flow result into a readable format. \Hypertarget{structproject_data_ac2fc2ca190f0786ec694519b9bd25849}\index{projectData@{projectData}!reviewers@{reviewers}}
+\index{reviewers@{reviewers}!projectData@{projectData}}
+\doxysubsubsection{\texorpdfstring{reviewers}{reviewers}}
+{\footnotesize\ttfamily \label{structproject_data_ac2fc2ca190f0786ec694519b9bd25849} 
+std::\+vector$<$\doxymbox{\hyperlink{struct_reviewers}{Reviewers}}$>$ project\+Data::\+reviewers}
+
+\Hypertarget{structproject_data_a88637351ac6f0637a88385717236d85f}\index{projectData@{projectData}!submissions@{submissions}}
+\index{submissions@{submissions}!projectData@{projectData}}
+\doxysubsubsection{\texorpdfstring{submissions}{submissions}}
+{\footnotesize\ttfamily \label{structproject_data_a88637351ac6f0637a88385717236d85f} 
+std::\+vector$<$\doxymbox{\hyperlink{struct_submission}{Submission}}$>$ project\+Data::\+submissions}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{data_structures_8h}{data\+Structures.\+h}}\end{DoxyCompactItemize}

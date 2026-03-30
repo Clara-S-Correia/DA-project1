@@ -1,0 +1,108 @@
+\doxysection{src/\+algorithm.h File Reference}
+\hypertarget{algorithm_8h}{}\label{algorithm_8h}\index{src/algorithm.h@{src/algorithm.h}}
+
+
+Implementation of the Edmonds-\/\+Karp algorithm for Maximum Flow.  
+
+
+{\ttfamily \+\#include "{}graph.\+h"{}}\newline
+{\ttfamily \+\#include $<$queue$>$}\newline
+{\ttfamily \+\#include $<$limits$>$}\newline
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{algorithm_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}}~std::\+numeric\+\_\+limits$<$double$>$::\+max()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T$>$ }\\bool \doxymbox{\hyperlink{algorithm_8h_a17bbd0ba390db5084a4f0dc1968d322f}{BFS\+\_\+part}} (\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}g, \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}s, \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}t)
+\begin{DoxyCompactList}\small\item\em Finds an augmenting path in the residual graph using Breadth-\/\+First Search. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T$>$ }\\void \doxymbox{\hyperlink{algorithm_8h_aa3609a09123eb68f5b66d2899bb4dd8b}{Edmonds\+\_\+karp}} (\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}g, T source, T sink)
+\begin{DoxyCompactList}\small\item\em Computes the Maximum Flow using the Edmonds-\/\+Karp algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the Edmonds-\/\+Karp algorithm for Maximum Flow. 
+
+This file contains the logic for finding augmenting paths via BFS and updating the residual graph to compute the optimal matching between submissions and reviewers. 
+
+\label{doc-define-members}
+\Hypertarget{algorithm_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{algorithm_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}\index{algorithm.h@{algorithm.h}!INF@{INF}}
+\index{INF@{INF}!algorithm.h@{algorithm.h}}
+\doxysubsubsection{\texorpdfstring{INF}{INF}}
+{\footnotesize\ttfamily \label{algorithm_8h_a12c2040f25d8e3a7b9e1c2024c618cb6} 
+\+\#define INF~std::\+numeric\+\_\+limits$<$double$>$::\+max()}
+
+
+
+\label{doc-func-members}
+\Hypertarget{algorithm_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{algorithm_8h_a17bbd0ba390db5084a4f0dc1968d322f}\index{algorithm.h@{algorithm.h}!BFS\_part@{BFS\_part}}
+\index{BFS\_part@{BFS\_part}!algorithm.h@{algorithm.h}}
+\doxysubsubsection{\texorpdfstring{BFS\_part()}{BFS\_part()}}
+{\footnotesize\ttfamily \label{algorithm_8h_a17bbd0ba390db5084a4f0dc1968d322f} 
+template$<$class T$>$ \\
+bool BFS\+\_\+part (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{s}{, }\item[{\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{t}{}\end{DoxyParamCaption})}
+
+
+
+Finds an augmenting path in the residual graph using Breadth-\/\+First Search. 
+
+Explores the graph starting from the source to find the shortest path (by number of edges) to the sink that still has available residual capacity (Capacity -\/ Flow \texorpdfstring{$>$}{>} 0).
+\begin{DoxyItemize}
+\item 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of data stored in the vertices (typically int). \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the \doxylink{class_graph}{Graph} object. \\
+\hline
+{\em s} & Pointer to the source \doxylink{class_vertex}{Vertex}. \\
+\hline
+{\em t} & Pointer to the sink \doxylink{class_vertex}{Vertex}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true If a path to the sink was found. 
+
+false If no more augmenting paths exist.
+\end{DoxyReturn}
+
+\item @time\+\_\+complexity O(V + E) where V is the number of vertices and E is the number of edges. 
+\end{DoxyItemize}\Hypertarget{algorithm_8h_aa3609a09123eb68f5b66d2899bb4dd8b}\index{algorithm.h@{algorithm.h}!Edmonds\_karp@{Edmonds\_karp}}
+\index{Edmonds\_karp@{Edmonds\_karp}!algorithm.h@{algorithm.h}}
+\doxysubsubsection{\texorpdfstring{Edmonds\_karp()}{Edmonds\_karp()}}
+{\footnotesize\ttfamily \label{algorithm_8h_aa3609a09123eb68f5b66d2899bb4dd8b} 
+template$<$class T$>$ \\
+void Edmonds\+\_\+karp (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{T}]{source}{, }\item[{T}]{sink}{}\end{DoxyParamCaption})}
+
+
+
+Computes the Maximum Flow using the Edmonds-\/\+Karp algorithm. 
+
+Iteratively calls BFS\+\_\+part to find augmenting paths. For each path, it identifies the "{}bottleneck"{} capacity and updates the flow along the forward and reverse edges.
+\begin{DoxyItemize}
+\item 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of data stored in the vertices. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the \doxylink{class_graph}{Graph} object. \\
+\hline
+{\em source} & The identifier for the source node (usually 0). \\
+\hline
+{\em sink} & The identifier for the sink node (usually num\+Sub + num\+Rev + 1).\\
+\hline
+\end{DoxyParams}
+
+\item @time\+\_\+complexity O(\+V \texorpdfstring{$\ast$}{*} E\texorpdfstring{$^\wedge$}{\string^}2). In a flow network, this ensures the algorithm terminates in polynomial time regardless of the capacity values. @space\+\_\+complexity O(\+V) for the queue and path tracking used in BFS. 
+\end{DoxyItemize}

@@ -1,0 +1,137 @@
+\doxysection{Graph\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_graph}{}\label{class_graph}\index{Graph$<$ T $>$@{Graph$<$ T $>$}}
+
+
+{\ttfamily \+\#include $<$graph.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_graph_a8b7b7465fbfd562e2a469f90a437ab75}{find\+Vertex}} (const T \&in) const
+\begin{DoxyCompactList}\small\item\em Finds a vertex in the graph by its information content. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_graph_a00be284ea2be3b3d0f0d2e493b70245b}{add\+Vertex}} (const T \&in)
+\begin{DoxyCompactList}\small\item\em Adds a new vertex to the graph. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_graph_ac226c30a45350356774a25532b3b158d}{add\+Flow\+Edge}} (const T \&sourc, const T \&dest, double cap)
+\begin{DoxyCompactList}\small\item\em Adds a directed flow edge between two vertices. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_graph_a0853eac15cdf0f06d63f4b8a7820ec71}{get\+Num\+Vertex}} () const
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_graph_a41624b03fcb6bd29e4df574a1ec58541}{get\+Vertex\+Set}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_graph_a676cdfb976eccfa82b631d2094c1cdac}{find\+Vertex\+Idx}} (const T \&in) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_graph_a26b3a6b9c61f02f5b2cd38ad4c6a4953}{vertex\+Set}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_graph_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_graph_ac226c30a45350356774a25532b3b158d}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!addFlowEdge@{addFlowEdge}}
+\index{addFlowEdge@{addFlowEdge}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addFlowEdge()}{addFlowEdge()}}
+{\footnotesize\ttfamily \label{class_graph_ac226c30a45350356774a25532b3b158d} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$::\+add\+Flow\+Edge (\begin{DoxyParamCaption}\item[{const T \&}]{sourc}{, }\item[{const T \&}]{dest}{, }\item[{double}]{cap}{}\end{DoxyParamCaption})}
+
+
+
+Adds a directed flow edge between two vertices. 
+
+Creates both a forward edge with the given capacity and a reverse (residual) edge with 0 capacity. Links them via set\+Reverse().
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em sourc} & The info of the source vertex. \\
+\hline
+{\em dest} & The info of the destination vertex. \\
+\hline
+{\em cap} & The maximum capacity of the flow edge. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if both vertices exist and the edges were created, false otherwise.
+\end{DoxyReturn}
+
+\item @time\+\_\+complexity O(\+V) due to find\+Vertex calls (scanning the vertex set). 
+\end{DoxyItemize}\Hypertarget{class_graph_a00be284ea2be3b3d0f0d2e493b70245b}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addVertex()}{addVertex()}}
+{\footnotesize\ttfamily \label{class_graph_a00be284ea2be3b3d0f0d2e493b70245b} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$::\+add\+Vertex (\begin{DoxyParamCaption}\item[{const T \&}]{in}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new vertex to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The information content for the new vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if added, false if a vertex with that info already exists. @time\+\_\+complexity O(\+V) because it calls find\+Vertex first. 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a8b7b7465fbfd562e2a469f90a437ab75}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!findVertex@{findVertex}}
+\index{findVertex@{findVertex}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{findVertex()}{findVertex()}}
+{\footnotesize\ttfamily \label{class_graph_a8b7b7465fbfd562e2a469f90a437ab75} 
+template$<$class T$>$ \\
+\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$::\+find\+Vertex (\begin{DoxyParamCaption}\item[{const T \&}]{in}{}\end{DoxyParamCaption}) const}
+
+
+
+Finds a vertex in the graph by its information content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The information to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the \doxylink{class_vertex}{Vertex} if found, nullptr otherwise. @time\+\_\+complexity O(\+V) where V is the number of vertices. 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a676cdfb976eccfa82b631d2094c1cdac}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!findVertexIdx@{findVertexIdx}}
+\index{findVertexIdx@{findVertexIdx}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{findVertexIdx()}{findVertexIdx()}}
+{\footnotesize\ttfamily \label{class_graph_a676cdfb976eccfa82b631d2094c1cdac} 
+template$<$class T$>$ \\
+int \doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$::\+find\+Vertex\+Idx (\begin{DoxyParamCaption}\item[{const T \&}]{in}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_graph_a0853eac15cdf0f06d63f4b8a7820ec71}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!getNumVertex@{getNumVertex}}
+\index{getNumVertex@{getNumVertex}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getNumVertex()}{getNumVertex()}}
+{\footnotesize\ttfamily \label{class_graph_a0853eac15cdf0f06d63f4b8a7820ec71} 
+template$<$class T$>$ \\
+int \doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$::\+get\+Num\+Vertex (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_graph_a41624b03fcb6bd29e4df574a1ec58541}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!getVertexSet@{getVertexSet}}
+\index{getVertexSet@{getVertexSet}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getVertexSet()}{getVertexSet()}}
+{\footnotesize\ttfamily \label{class_graph_a41624b03fcb6bd29e4df574a1ec58541} 
+template$<$class T$>$ \\
+std::\+vector$<$ \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$::\+get\+Vertex\+Set (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_graph_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_graph_a26b3a6b9c61f02f5b2cd38ad4c6a4953}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!vertexSet@{vertexSet}}
+\index{vertexSet@{vertexSet}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{vertexSet}{vertexSet}}
+{\footnotesize\ttfamily \label{class_graph_a26b3a6b9c61f02f5b2cd38ad4c6a4953} 
+template$<$class T$>$ \\
+std::\+vector$<$\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$T$>$ \texorpdfstring{$\ast$}{*}$>$ \doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$::\+vertex\+Set\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{graph_8h}{graph.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,99 @@
+\doxysection{project\+Config Struct Reference}
+\hypertarget{structproject_config}{}\label{structproject_config}\index{projectConfig@{projectConfig}}
+
+
+Global settings parsed from the \+\#\+Parameters and \+\#\+Control sections.  
+
+
+
+
+{\ttfamily \+\#include $<$data\+Structures.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{structproject_config_a6f392dc9c9e1d0e17261ffdf976dbac6}{min\+Reviews\+Per\+Submission}} = 0
+\item 
+int \doxymbox{\hyperlink{structproject_config_a265fba8d56741e75443c2497d835ecf6}{max\+Reviews\+Per\+Reviewer}} = 0
+\item 
+int \doxymbox{\hyperlink{structproject_config_aa88fc7f1267692f90e4b54f3f6248e3b}{primary\+Reviewer\+Expertise}} = 0
+\item 
+int \doxymbox{\hyperlink{structproject_config_af51c960cd8ca8565899f49bc7594e965}{secondary\+Reviewer\+Expertise}} = 0
+\item 
+int \doxymbox{\hyperlink{structproject_config_a9b49277d3ed77c5072d8965573946b38}{primary\+Submission\+Domain}} = 0
+\item 
+int \doxymbox{\hyperlink{structproject_config_af4d233deee4388638eefbe3d5bf7c547}{secondary\+Submission\+Domain}} = 0
+\item 
+int \doxymbox{\hyperlink{structproject_config_aa9a31e8d82f199eae5aff65ed45fb03d}{generate\+Assignments}} = 0
+\item 
+int \doxymbox{\hyperlink{structproject_config_acb05d45c6b0d080b1aeb0feaec0c3f61}{risk\+Analysis}} = 0
+\item 
+std::\+string \doxymbox{\hyperlink{structproject_config_ab4bb1c1d266efaa658b25e237ec36771}{output\+File\+Name}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global settings parsed from the \+\#\+Parameters and \+\#\+Control sections. 
+
+\label{doc-variable-members}
+\Hypertarget{structproject_config_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structproject_config_aa9a31e8d82f199eae5aff65ed45fb03d}\index{projectConfig@{projectConfig}!generateAssignments@{generateAssignments}}
+\index{generateAssignments@{generateAssignments}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{generateAssignments}{generateAssignments}}
+{\footnotesize\ttfamily \label{structproject_config_aa9a31e8d82f199eae5aff65ed45fb03d} 
+int project\+Config::\+generate\+Assignments = 0}
+
+Mode:\+ 1 (Primary), 2 (Pri-\/\+Rev), 3 (Full) \Hypertarget{structproject_config_a265fba8d56741e75443c2497d835ecf6}\index{projectConfig@{projectConfig}!maxReviewsPerReviewer@{maxReviewsPerReviewer}}
+\index{maxReviewsPerReviewer@{maxReviewsPerReviewer}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{maxReviewsPerReviewer}{maxReviewsPerReviewer}}
+{\footnotesize\ttfamily \label{structproject_config_a265fba8d56741e75443c2497d835ecf6} 
+int project\+Config::\+max\+Reviews\+Per\+Reviewer = 0}
+
+\Hypertarget{structproject_config_a6f392dc9c9e1d0e17261ffdf976dbac6}\index{projectConfig@{projectConfig}!minReviewsPerSubmission@{minReviewsPerSubmission}}
+\index{minReviewsPerSubmission@{minReviewsPerSubmission}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{minReviewsPerSubmission}{minReviewsPerSubmission}}
+{\footnotesize\ttfamily \label{structproject_config_a6f392dc9c9e1d0e17261ffdf976dbac6} 
+int project\+Config::\+min\+Reviews\+Per\+Submission = 0}
+
+\Hypertarget{structproject_config_ab4bb1c1d266efaa658b25e237ec36771}\index{projectConfig@{projectConfig}!outputFileName@{outputFileName}}
+\index{outputFileName@{outputFileName}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{outputFileName}{outputFileName}}
+{\footnotesize\ttfamily \label{structproject_config_ab4bb1c1d266efaa658b25e237ec36771} 
+std::\+string project\+Config::\+output\+File\+Name}
+
+\Hypertarget{structproject_config_aa88fc7f1267692f90e4b54f3f6248e3b}\index{projectConfig@{projectConfig}!primaryReviewerExpertise@{primaryReviewerExpertise}}
+\index{primaryReviewerExpertise@{primaryReviewerExpertise}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{primaryReviewerExpertise}{primaryReviewerExpertise}}
+{\footnotesize\ttfamily \label{structproject_config_aa88fc7f1267692f90e4b54f3f6248e3b} 
+int project\+Config::\+primary\+Reviewer\+Expertise = 0}
+
+Toggle for using primary expertise \Hypertarget{structproject_config_a9b49277d3ed77c5072d8965573946b38}\index{projectConfig@{projectConfig}!primarySubmissionDomain@{primarySubmissionDomain}}
+\index{primarySubmissionDomain@{primarySubmissionDomain}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{primarySubmissionDomain}{primarySubmissionDomain}}
+{\footnotesize\ttfamily \label{structproject_config_a9b49277d3ed77c5072d8965573946b38} 
+int project\+Config::\+primary\+Submission\+Domain = 0}
+
+Toggle for using primary domain \Hypertarget{structproject_config_acb05d45c6b0d080b1aeb0feaec0c3f61}\index{projectConfig@{projectConfig}!riskAnalysis@{riskAnalysis}}
+\index{riskAnalysis@{riskAnalysis}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{riskAnalysis}{riskAnalysis}}
+{\footnotesize\ttfamily \label{structproject_config_acb05d45c6b0d080b1aeb0feaec0c3f61} 
+int project\+Config::\+risk\+Analysis = 0}
+
+Boolean:\+ 0 or 1 \Hypertarget{structproject_config_af51c960cd8ca8565899f49bc7594e965}\index{projectConfig@{projectConfig}!secondaryReviewerExpertise@{secondaryReviewerExpertise}}
+\index{secondaryReviewerExpertise@{secondaryReviewerExpertise}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{secondaryReviewerExpertise}{secondaryReviewerExpertise}}
+{\footnotesize\ttfamily \label{structproject_config_af51c960cd8ca8565899f49bc7594e965} 
+int project\+Config::\+secondary\+Reviewer\+Expertise = 0}
+
+Toggle for using secondary expertise \Hypertarget{structproject_config_af4d233deee4388638eefbe3d5bf7c547}\index{projectConfig@{projectConfig}!secondarySubmissionDomain@{secondarySubmissionDomain}}
+\index{secondarySubmissionDomain@{secondarySubmissionDomain}!projectConfig@{projectConfig}}
+\doxysubsubsection{\texorpdfstring{secondarySubmissionDomain}{secondarySubmissionDomain}}
+{\footnotesize\ttfamily \label{structproject_config_af4d233deee4388638eefbe3d5bf7c547} 
+int project\+Config::\+secondary\+Submission\+Domain = 0}
+
+Toggle for using secondary domain 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{data_structures_8h}{data\+Structures.\+h}}\end{DoxyCompactItemize}

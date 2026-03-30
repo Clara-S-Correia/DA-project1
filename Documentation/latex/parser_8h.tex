@@ -1,0 +1,45 @@
+\doxysection{src/\+parser.h File Reference}
+\hypertarget{parser_8h}{}\label{parser_8h}\index{src/parser.h@{src/parser.h}}
+
+
+Header file for the CSV/\+\+Text input parser.  
+
+
+{\ttfamily \+\#include "{}data\+Structures.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{parser_8h_a48f9a6d82333517f5463089418fcc8e2}{parser}} (const std::\+string \&filename, \doxymbox{\hyperlink{structproject_data}{project\+Data}} \&data)
+\begin{DoxyCompactList}\small\item\em Parses the input file and populates the \doxylink{structproject_data}{project\+Data} structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the CSV/\+\+Text input parser. 
+
+Responsible for:\+ Reading submissions, reviewers, parameters, and control settings from a formatted file. 
+
+\label{doc-func-members}
+\Hypertarget{parser_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{parser_8h_a48f9a6d82333517f5463089418fcc8e2}\index{parser.h@{parser.h}!parser@{parser}}
+\index{parser@{parser}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{parser()}{parser()}}
+{\footnotesize\ttfamily \label{parser_8h_a48f9a6d82333517f5463089418fcc8e2} 
+void parser (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Parses the input file and populates the \doxylink{structproject_data}{project\+Data} structure. 
+
+Reads the file line-\/by-\/line using a mode-\/based state machine to distinguish between \+\#\+Submissions, \doxylink{struct_reviewers}{Reviewers}, \+\#\+Parameters, and \+\#\+Control sections.
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the input file (e.\+g., "{}input.\+csv"{}). \\
+\hline
+{\em data} & A reference to the \doxylink{structproject_data}{project\+Data} object where parsed info will be stored.\\
+\hline
+\end{DoxyParams}
+
+\item @time\+\_\+complexity O(\+L \texorpdfstring{$\ast$}{*} C) where L is the number of lines in the file and C is the average number of characters per line. This is effectively linear O(\+N). @space\+\_\+complexity O(\+N) where N is the total amount of data stored in memory. 
+\end{DoxyItemize}

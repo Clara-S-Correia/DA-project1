@@ -1,0 +1,59 @@
+\doxysection{data\+Structures.\+h}
+\hypertarget{data_structures_8h_source}{}\label{data_structures_8h_source}\index{src/dataStructures.h@{src/dataStructures.h}}
+\doxymbox{\hyperlink{data_structures_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ DA\_PROJECT1\_DATASTRUCTURES\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ DA\_PROJECT1\_DATASTRUCTURES\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_submission}{Submission}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_submission_a7b6e2405d79134e923f1d74beba845a0}{id}};}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_submission_ae143f4081965aaa80af89fc3a1b5baa6}{title}};}
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_submission_a853f337b093f91f4192c70df3e02d631}{authors}};}
+\DoxyCodeLine{00023\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_submission_ab524f4484bf346c7ba0d94b0a7dd114c}{email}};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_submission_abfdf604dc32656224ca0be0b64c3ae2c}{primary}};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_submission_a9a0cecfd6d8ff31ce85a22c4a88737bd}{secondary}};\ \textcolor{comment}{//can\ be\ empty}}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_reviewers}{Reviewers}}\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_reviewers_a2f26a75701ed8994dfea0f63a087b9ca}{id}};}
+\DoxyCodeLine{00034\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_reviewers_ae71aa8d90686533410f516704cba037c}{email}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_reviewers_ad01c9d32ea1e60cd1bd5620e6f8061c1}{primary}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_reviewers_a2de505e383c4567da247d6331af72ab0}{secondary}};}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structproject_config}{projectConfig}}\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structproject_config_a6f392dc9c9e1d0e17261ffdf976dbac6}{minReviewsPerSubmission}}\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//added\ the\ rest\ of\ parameters\ here!\ :)}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structproject_config_a265fba8d56741e75443c2497d835ecf6}{maxReviewsPerReviewer}}\ =\ 0;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//values\ either\ 1\ or\ 0}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structproject_config_aa88fc7f1267692f90e4b54f3f6248e3b}{primaryReviewerExpertise}}\ =\ 0;\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structproject_config_af51c960cd8ca8565899f49bc7594e965}{secondaryReviewerExpertise}}\ =\ 0;\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structproject_config_a9b49277d3ed77c5072d8965573946b38}{primarySubmissionDomain}}\ =\ 0;\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structproject_config_af4d233deee4388638eefbe3d5bf7c547}{secondarySubmissionDomain}}\ =\ 0;\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structproject_config_aa9a31e8d82f199eae5aff65ed45fb03d}{generateAssignments}}\ =\ 0;\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structproject_config_acb05d45c6b0d080b1aeb0feaec0c3f61}{riskAnalysis}}\ =\ 0;\ }
+\DoxyCodeLine{00054\ \ \ \ \ std::string\ \doxymbox{\hyperlink{structproject_config_ab4bb1c1d266efaa658b25e237ec36771}{outputFileName}};}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structproject_data}{projectData}}\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ std::vector<Submission>\ \doxymbox{\hyperlink{structproject_data_a88637351ac6f0637a88385717236d85f}{submissions}};}
+\DoxyCodeLine{00064\ \ \ \ \ std::vector<Reviewers>\ \doxymbox{\hyperlink{structproject_data_ac2fc2ca190f0786ec694519b9bd25849}{reviewers}};}
+\DoxyCodeLine{00065\ \ \ \ \ \doxymbox{\hyperlink{structproject_config}{projectConfig}}\ \doxymbox{\hyperlink{structproject_data_a8eb94451afb78fe44879331a0ff4f998}{config}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ std::map<int,\ int>\ \doxymbox{\hyperlink{structproject_data_a048ec0b87c727cb52a99587a911d67e6}{nodeToRealID}};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{/*two\ map<int,\ vector<int>>:}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ sub-\/rev}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ rev-\/sub}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ //map\ for\ either\ one\ will\ have\ id/key\ as\ int\ and\ the\ vector\ will\ have\ the\ data\ (that\ can\ be\ multiple\ revs\ or\ subs)}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DA\_PROJECT1\_DATASTRUCTURES\_H}}
+
+\end{DoxyCode}
