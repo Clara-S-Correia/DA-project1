@@ -33,7 +33,7 @@ public:
     static Graph<int> buildGraph(projectData& data);
 
     /**
-     * @brief Exports assignment results to a CSV file.
+     * @brief Exports assignment results and risk analysis to a CSV file.
      * @details Traverses the graph to identify edges with positive flow. It generates
      * lists of assignments, calculates total matches, and identifies "Risk" submissions
      * that did not meet the minimum review requirement.
