@@ -1,6 +1,9 @@
-//
-// Created by esha-naveed on 3/30/26.
-//
+/**
+* @file graph.h
+ * @brief Graph infrastructure for flow networks.
+ * @details Implements Vertices and Edges with support for residual graphs,
+ * essential for Max-Flow algorithms like Edmonds-Karp.
+ */
 
 #ifndef DA_PROJECT1_GRAPH_H
 #define DA_PROJECT1_GRAPH_H
@@ -64,9 +67,32 @@ protected:
 template <class T>
 class Graph {
 public:
+    /**
+     * @brief Finds a vertex in the graph by its information content.
+     * @param in The information to search for.
+     * @return Pointer to the Vertex if found, nullptr otherwise.
+     * @time_complexity O(V) where V is the number of vertices.
+     */
     Vertex<T> *findVertex(const T &in) const;
 
+    /**
+     * @brief Adds a new vertex to the graph.
+     * @param in The information content for the new vertex.
+     * @return true if added, false if a vertex with that info already exists.
+     * @time_complexity O(V) because it calls findVertex first.
+     */
     bool addVertex(const T &in);
+
+    /**
+     * @brief Adds a directed flow edge between two vertices.
+     * @details Creates both a forward edge with the given capacity and a
+     * reverse (residual) edge with 0 capacity. Links them via setReverse().
+     * * @param sourc The info of the source vertex.
+     * @param dest The info of the destination vertex.
+     * @param cap The maximum capacity of the flow edge.
+     * @return true if both vertices exist and the edges were created, false otherwise.
+     * * @time_complexity O(V) due to findVertex calls (scanning the vertex set).
+     */
     bool addFlowEdge(const T &sourc, const T &dest, double cap);
 
     int getNumVertex() const;
