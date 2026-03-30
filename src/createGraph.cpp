@@ -91,3 +91,90 @@ Graph<int> createGraph::buildGraph(projectData &data) {
     }
     return g;
 }
+
+void outpur_file(projectData &data, Graph<int> &g) {
+
+    //name of file
+    string filename = data.config.outputFileName;
+    if (filename.empty()) filename = "no_name.csv";
+
+    //creating file
+    ofstream outFile(filename);
+    if (!outFile.is_open()) { cout << "Error opening output file" << endl; exit(1); }
+
+    //counter
+    int count=0;
+
+    int numSub = data.submissions.size();
+    int numRev = data.reviewers.size();
+
+    //subs list
+    outFile << "#Submissions,Reviewer,Match" << endl;
+    for (int i=1; i<numSub; i++) {
+        auto v = g.findVertex(i);//get vertex
+
+        if (!v) continue;//if not, dude move on
+
+        for (auto e : v->getAdj()) {//for each edge in the vertex
+            /**conditions in if
+             * if there is flow (>0)
+             * edge is -> a arev, moving to sub com higer id, since subs 1st then revs
+             * stops at revs - to not count sink
+             */
+            if ((e->getFlow() > 0) && (e->getDest()->getInfo() > numSub) && (e->getDest()->getInfo() <= (numSub + numRev))) {
+                outFile << data.nodeToRealID[i] << "," << data.nodeToRealID[e->getDest()->getInfo()] << "," << data.submissions[i-1].primary << endl;
+                count++;
+            }
+        }
+    }
+
+    outFile << "#Reviewer,Submission,Match" << endl;
+    for (int j=0; j<numRev; j++) {
+        //S->sub->rev->t
+        int revNodeIdx = numSub + j + 1;//starting from subs+1
+
+        auto v = g.findVertex(revNodeIdx);//vertex of THIS rev
+        if (!v) continue;
+
+        for (auto vertex : g.getVertexSet()) {//in each vertex
+            /*condition
+             * for verteices between 1 and sub
+             */
+            if ((vertex->getInfo() >= 1) && (vertex->getInfo() <= numSub)) {
+                //edges FROM a specific sub
+                for (auto e : vertex->getAdj()) {
+                    //if edge points at the cureent rev
+                    if ((e->getDest() == v) && (e->getFlow() > 0)) {
+                        outFile << data.nodeToRealID[revNodeIdx] << "," << data.nodeToRealID[vertex->getInfo()] << "," << data.reviewers[j-1].primary << endl;
+                    }
+                }
+            }
+        }
+    }
+
+    //totaL print
+    outFile << "#Total: " << count << endl;
+
+    //last list
+    outFile << "#Submissions,Domain,Missing,Reviews" << endl;
+    for (int i = 1; i <= numSub; i++) {
+        auto v = g.findVertex(i);//for each sub mode
+        int curr_revs = 0;//counter for each sub
+
+        if (v) {
+            for (auto e : v->getAdj()) {
+                if (e->getFlow() > 0 && e->getDest()->getInfo() > numSub) curr_revs++;
+            }
+        }
+
+        //minus from needed to the one you got!
+        int missing = data.config.minReviewsPerSubmission - curr_revs;
+
+        //IF IF IF sub has less revs throw in with the RISKY files!!!
+        if (missing > 0) {
+            outFile << data.nodeToRealID[i] << "," << data.submissions[i-1].primary << "," << missing << endl;
+        }
+    }
+
+    outFile.close();
+}
