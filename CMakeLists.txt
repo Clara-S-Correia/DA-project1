@@ -9,4 +9,5 @@ add_executable(DA_project1 src/main.cpp
         src/dataStructures.h
         src/graph.h
         src/createGraph.h
-        src/createGraph.cpp)
+        src/createGraph.cpp
+        src/code.cpp)
