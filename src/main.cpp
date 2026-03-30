@@ -14,7 +14,7 @@ void runBatchMode(string inputFile, string outputFile, projectData& data) {
     //1.
     parser(inputFile, data);
     if (data.submissions.empty()) {
-        cerr << "[Error] BAtch Mode: could not parse input file, or file is empty" << endl;
+        cerr << "[Error] Batch Mode: could not parse input file, or file is empty" << endl;
         return;
     }
 
@@ -27,11 +27,13 @@ void runBatchMode(string inputFile, string outputFile, projectData& data) {
     Edmonds_karp(&flowGraph, S, T);
 
     //Output results
+    /*
     ofstream out(outputFile);
     if (!out.is_open()) {
         cerr << "[Error] Batch Mode: Could not open output file: " << outputFile << endl;
         return;
     }
+
 
     out << "--- Assignment Results (Batch Mode) ---" << endl;
     int matches = 0;
@@ -48,9 +50,11 @@ void runBatchMode(string inputFile, string outputFile, projectData& data) {
         }
     }
     out << "Total Assignments: " << matches << endl;
-    out.close();
+    out.close();*/
+    data.config.outputFileName = outputFile;
+    createGraph::output_file(data, flowGraph);
 
-    cout << "[Success] Batch execution complete. " << matches << " assignments saved to " << outputFile << endl;
+    cout << "[Success] Batch execution complete. Results saved to " << outputFile << endl;
 }
 
 void displayMenu() {
@@ -66,6 +70,7 @@ void displayMenu() {
 
 int main(int argc, char* argv[]) {
     projectData data;
+
     // --- BATCH MODE CHECK ---
     // Syntax: myProg -b input.csv output.csv
     if (argc >= 4 && string(argv[1]) == "-b") {
@@ -151,6 +156,7 @@ int main(int argc, char* argv[]) {
                         }
                     }
                 }
+                cout << "\n[Success] Results exported to: " << data.config.outputFileName << endl;
                 break;
             }
             case 0:

@@ -41,7 +41,7 @@ public:
      * @param g The Graph after the Edmonds-Karp algorithm has been executed.
      * @time_complexity O(V + E) to traverse the graph and check edge flows.
      */
-    static void outpur_file(projectData &data, Graph<int> &g);
+    static void output_file(projectData &data, Graph<int> &g);
 };
 
 #endif //DA_PROJECT1_CREATEGRAPH_H

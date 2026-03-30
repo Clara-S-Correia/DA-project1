@@ -92,7 +92,7 @@ Graph<int> createGraph::buildGraph(projectData &data) {
     return g;
 }
 
-void outpur_file(projectData &data, Graph<int> &g) {
+void createGraph::output_file(projectData &data, Graph<int> &g) {
 
     //name of file
     string filename = data.config.outputFileName;
