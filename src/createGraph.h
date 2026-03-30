@@ -31,6 +31,17 @@ public:
      * @space_complexity O(V + E) where V = R + S + 2 and E is the number of valid matches.
      */
     static Graph<int> buildGraph(projectData& data);
+
+    /**
+     * @brief Exports assignment results to a CSV file.
+     * @details Traverses the graph to identify edges with positive flow. It generates
+     * lists of assignments, calculates total matches, and identifies "Risk" submissions
+     * that did not meet the minimum review requirement.
+     * @param data The projectData structure for mapping node IDs to real IDs.
+     * @param g The Graph after the Edmonds-Karp algorithm has been executed.
+     * @time_complexity O(V + E) to traverse the graph and check edge flows.
+     */
+    static void outpur_file(projectData &data, Graph<int> &g);
 };
 
 #endif //DA_PROJECT1_CREATEGRAPH_H
