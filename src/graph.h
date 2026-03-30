@@ -121,9 +121,6 @@ template <class T>
 Vertex<T> * Edge<T>::getOrig() const { return this->orig; }
 
 template <class T>
-int Edge<T>::getCapacity() const { return this->capacity; }
-
-template <class T>
 double Edge<T>::getFlow() const { return flow; }
 
 template <class T>
