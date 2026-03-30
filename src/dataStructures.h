@@ -21,8 +21,8 @@ struct Submission {
     std::string title;
     std::string authors;
     std::string email;
-    std::string primary;
-    std::string secondary; //can be empty
+    int primary;
+    int secondary; //can be empty
 };
 
 /**
@@ -32,8 +32,8 @@ struct Submission {
 struct Reviewers {
     int id;
     std::string email;
-    std::string primary;
-    std::string secondary;
+    int primary;
+    int secondary;
 };
 
 /**

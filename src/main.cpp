@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
 
         switch (choice) {
             case 1: {
-                string defaultPath = "/dataset/input/dataset1.csv";
+                string defaultPath = "../dataset/input/dataset1.csv";
                 char useDefault;
 
                 cout << "Use default dataset? (y/n): ";
