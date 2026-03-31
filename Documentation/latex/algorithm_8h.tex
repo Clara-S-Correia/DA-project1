@@ -19,7 +19,7 @@ Implementation of the Edmonds-\/\+Karp algorithm for Maximum Flow.
 \item 
 {\footnotesize template$<$class T$>$ }\\bool \doxymbox{\hyperlink{algorithm_8h_a17bbd0ba390db5084a4f0dc1968d322f}{BFS\+\_\+part}} (\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}g, \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}s, \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}t)
 \begin{DoxyCompactList}\small\item\em Finds an augmenting path in the residual graph using Breadth-\/\+First Search. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T$>$ }\\void \doxymbox{\hyperlink{algorithm_8h_aa3609a09123eb68f5b66d2899bb4dd8b}{Edmonds\+\_\+karp}} (\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}g, T source, T sink)
+{\footnotesize template$<$class T$>$ }\\int \doxymbox{\hyperlink{algorithm_8h_a0ad6fdb302dbc189b60830cef635afb5}{Edmonds\+\_\+karp}} (\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}g, T source, T sink)
 \begin{DoxyCompactList}\small\item\em Computes the Maximum Flow using the Edmonds-\/\+Karp algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -76,12 +76,12 @@ false If no more augmenting paths exist.
 \end{DoxyReturn}
 
 \item @time\+\_\+complexity O(V + E) where V is the number of vertices and E is the number of edges. 
-\end{DoxyItemize}\Hypertarget{algorithm_8h_aa3609a09123eb68f5b66d2899bb4dd8b}\index{algorithm.h@{algorithm.h}!Edmonds\_karp@{Edmonds\_karp}}
+\end{DoxyItemize}\Hypertarget{algorithm_8h_a0ad6fdb302dbc189b60830cef635afb5}\index{algorithm.h@{algorithm.h}!Edmonds\_karp@{Edmonds\_karp}}
 \index{Edmonds\_karp@{Edmonds\_karp}!algorithm.h@{algorithm.h}}
 \doxysubsubsection{\texorpdfstring{Edmonds\_karp()}{Edmonds\_karp()}}
-{\footnotesize\ttfamily \label{algorithm_8h_aa3609a09123eb68f5b66d2899bb4dd8b} 
+{\footnotesize\ttfamily \label{algorithm_8h_a0ad6fdb302dbc189b60830cef635afb5} 
 template$<$class T$>$ \\
-void Edmonds\+\_\+karp (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{T}]{source}{, }\item[{T}]{sink}{}\end{DoxyParamCaption})}
+int Edmonds\+\_\+karp (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{T}]{source}{, }\item[{T}]{sink}{}\end{DoxyParamCaption})}
 
 
 

@@ -15,7 +15,9 @@ Provides static methods to transform project data into a flow network.
 static \doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \doxymbox{\hyperlink{classcreate_graph_aa77784249f6468a1d38876487f94f25d}{build\+Graph}} (\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&data)
 \begin{DoxyCompactList}\small\item\em Transforms parsed Project\+Data into a directed Flow \doxylink{class_graph}{Graph}. \end{DoxyCompactList}\item 
 static void \doxymbox{\hyperlink{classcreate_graph_a42fbbcd642d0782e83cfbf369717733d}{output\+\_\+file}} (\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&data, \doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&g)
-\begin{DoxyCompactList}\small\item\em Exports assignment results and risk analysis to a CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Exports assignment results and risk analysis to a CSV file. \end{DoxyCompactList}\item 
+static vector$<$ int $>$ \doxymbox{\hyperlink{classcreate_graph_a97ca37f40b19f68e8a1e30d627ae3c25}{risk\+\_\+revs}} (\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&data, \doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ g)
+\begin{DoxyCompactList}\small\item\em Identifies reviewers who are at "{}risk"{} or under-\/assigned. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -64,7 +66,27 @@ Traverses the graph to identify edges with positive flow. It generates lists of 
 {\em g} & The \doxylink{class_graph}{Graph} after the Edmonds-\/\+Karp algorithm has been executed. @time\+\_\+complexity O(V + E) to traverse the graph and check edge flows. \\
 \hline
 \end{DoxyParams}
-conditions in if if there is flow (\texorpdfstring{$>$}{>}0) edge is -\/\texorpdfstring{$>$}{>} a arev, moving to sub com higer id, since subs 1st then revs stops at revs -\/ to not count sink
+conditions in if if there is flow (\texorpdfstring{$>$}{>}0) edge is -\/\texorpdfstring{$>$}{>} a arev, moving to sub com higer id, since subs 1st then revs stops at revs -\/ to not count sink\Hypertarget{classcreate_graph_a97ca37f40b19f68e8a1e30d627ae3c25}\index{createGraph@{createGraph}!risk\_revs@{risk\_revs}}
+\index{risk\_revs@{risk\_revs}!createGraph@{createGraph}}
+\doxysubsubsection{\texorpdfstring{risk\_revs()}{risk\_revs()}}
+{\footnotesize\ttfamily \label{classcreate_graph_a97ca37f40b19f68e8a1e30d627ae3c25} 
+vector$<$ int $>$ create\+Graph::\+risk\+\_\+revs (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&}]{data}{, }\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$}]{g}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Identifies reviewers who are at "{}risk"{} or under-\/assigned. 
+
+Analyzes the flow network to find reviewers whose current assignments are below a certain threshold or who are critical bottlenecks in the matching. 
+\begin{DoxyParams}{Parameters}
+{\em data} & The \doxylink{structproject_data}{project\+Data} structure containing reviewer constraints. \\
+\hline
+{\em g} & The \doxylink{class_graph}{Graph} containing the final flow results. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of integer IDs representing the reviewers at risk. @time\+\_\+complexity O(\+V) where V is the number of reviewer nodes in the graph. 
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
 \item 

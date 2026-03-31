@@ -1,5 +1,10 @@
 \doxysection{src/\+main.cpp File Reference}
 \hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Entry point for the Graph-\/based Assignment System.  
+
+
 {\ttfamily \+\#include $<$iostream$>$}\newline
 {\ttfamily \+\#include $<$fstream$>$}\newline
 {\ttfamily \+\#include $<$string$>$}\newline
@@ -13,12 +18,17 @@
 \begin{DoxyCompactItemize}
 \item 
 void \doxymbox{\hyperlink{main_8cpp_accc662345cce7d091187b84689ee24a4}{run\+Batch\+Mode}} (string input\+File, string output\+File, \doxymbox{\hyperlink{structproject_data}{project\+Data}} \&data)
-\item 
+\begin{DoxyCompactList}\small\item\em Executes the assignment pipeline without user intervention. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{main_8cpp_a59c2926dd9b0968badf463aaf4f91422}{display\+Menu}} ()
 \item 
 int \doxymbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main execution loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Entry point for the Graph-\/based Assignment System. 
+
+Provides both an interactive menu-\/driven interface and a non-\/interactive batch mode for processing paper-\/reviewer assignments using max-\/flow algorithms. 
 
 \label{doc-func-members}
 \Hypertarget{main_8cpp_doc-func-members}
@@ -35,9 +45,45 @@ void display\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 {\footnotesize\ttfamily \label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
 int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+}\end{DoxyParamCaption})}
 
-\Hypertarget{main_8cpp_accc662345cce7d091187b84689ee24a4}\index{main.cpp@{main.cpp}!runBatchMode@{runBatchMode}}
+
+
+Main execution loop. 
+
+Handles command-\/line arguments for batch mode or launches the interactive terminal menu.
+\begin{DoxyItemize}
+\item Usage (Batch Mode):\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./program\ -\/b\ input.csv\ output.csv}
+
+\end{DoxyCode}
+
+\item 
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Execution status (0 for success). 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{main_8cpp_accc662345cce7d091187b84689ee24a4}\index{main.cpp@{main.cpp}!runBatchMode@{runBatchMode}}
 \index{runBatchMode@{runBatchMode}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{runBatchMode()}{runBatchMode()}}
 {\footnotesize\ttfamily \label{main_8cpp_accc662345cce7d091187b84689ee24a4} 
 void run\+Batch\+Mode (\begin{DoxyParamCaption}\item[{string}]{input\+File}{, }\item[{string}]{output\+File}{, }\item[{\doxymbox{\hyperlink{structproject_data}{project\+Data}} \&}]{data}{}\end{DoxyParamCaption})}
 
+
+
+Executes the assignment pipeline without user intervention. 
+
+Parses the input, builds the flow network, runs Edmonds-\/\+Karp, and exports the results directly to a file. 
+\begin{DoxyParams}{Parameters}
+{\em input\+File} & Path to the source CSV dataset. \\
+\hline
+{\em output\+File} & Path where the results should be saved. \\
+\hline
+{\em data} & Reference to the \doxylink{structproject_data}{project\+Data} structure to store parsed information. \\
+\hline
+\end{DoxyParams}

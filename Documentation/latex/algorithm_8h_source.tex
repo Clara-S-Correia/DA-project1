@@ -75,42 +75,46 @@
 \DoxyCodeLine{00089\ \}}
 \DoxyCodeLine{00090\ }
 \DoxyCodeLine{00103\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
-\DoxyCodeLine{00104\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{algorithm_8h_aa3609a09123eb68f5b66d2899bb4dd8b}{Edmonds\_karp}}(\doxymbox{\hyperlink{class_graph}{Graph<T>}}\ *g,\ T\ source,\ T\ sink)\ \{}
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{algorithm_8h_a0ad6fdb302dbc189b60830cef635afb5}{Edmonds\_karp}}(\doxymbox{\hyperlink{class_graph}{Graph<T>}}\ *g,\ T\ source,\ T\ sink)\ \{}
 \DoxyCodeLine{00105\ \ \ \ \ \doxymbox{\hyperlink{class_vertex}{Vertex<T>}}\ *s\ =\ g-\/>\doxymbox{\hyperlink{class_graph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(source);}
 \DoxyCodeLine{00106\ \ \ \ \ \doxymbox{\hyperlink{class_vertex}{Vertex<T>}}\ *t\ =\ g-\/>\doxymbox{\hyperlink{class_graph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(sink);}
 \DoxyCodeLine{00107\ }
 \DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//in\ case\ parser\ fails,\ findVertex\ will\ return\ nullptr\ thuis\ checking}}
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (s==\textcolor{keyword}{nullptr}\ ||\ t==\textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (s==\textcolor{keyword}{nullptr}\ ||\ t==\textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return}\ 0;}
 \DoxyCodeLine{00110\ }
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//while\ bfs(graph,\ source,\ sink)}}
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{while}\ (\doxymbox{\hyperlink{algorithm_8h_a17bbd0ba390db5084a4f0dc1968d322f}{BFS\_part}}(g,\ s,\ t))\ \{}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ n\_min\ =\ \doxymbox{\hyperlink{algorithm_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}};}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//looking\ for\ n\_max\ capacity\ of\ path\ by\ bfs}}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v=t\ ;\ v!=s;\ )\ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//starting\ from\ sink,\ until\ the\ source}}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ e\ =\ v-\/>getPath();\textcolor{comment}{//get\ edge\ of\ vertex\ v}}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ n\_min\ =\ min(n\_min,\ e-\/>getCapacity()-\/e-\/>getFlow());\textcolor{comment}{//getting\ smaller\ one,\ the\ current\ max\ or\ the\ path\ found}}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ v=e-\/>getOrig();\textcolor{comment}{//moving\ backwards\ -\/\ getting\ the\ original}}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v=t\ ;\ v!=s;\ )\ \{}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ e\ =\ v-\/>getPath();}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//adding\ flow\ to\ the\ forward\ edge}}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>setFlow(e-\/>getFlow()\ +\ n\_min);}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//setting\ flow\ to\ -\/>\ the\ initial\ flow\ at\ the\ edge+cureent\ min\ path}}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//minus\ flow\ from\ the\ prev\ edge}}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ rev\ =\ e-\/>getReverse();}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rev!=\textcolor{keyword}{nullptr})\ rev-\/>setFlow(rev-\/>getFlow()\ -\/\ n\_min);}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//setting\ flow\ to-\/>\ the\ prev\ flow-\/min\ path}}
-\DoxyCodeLine{00133\ }
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ v=e-\/>getOrig();}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00136\ \ \ \ \ \}}
-\DoxyCodeLine{00137\ \}}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DA\_PROJECT1\_ALGORITHM\_H}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{int}\ total\_flow\ =\ 0;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//while\ bfs(graph,\ source,\ sink)}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{while}\ (\doxymbox{\hyperlink{algorithm_8h_a17bbd0ba390db5084a4f0dc1968d322f}{BFS\_part}}(g,\ s,\ t))\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ n\_min\ =\ \doxymbox{\hyperlink{algorithm_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//looking\ for\ n\_max\ capacity\ of\ path\ by\ bfs}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v=t\ ;\ v!=s;\ )\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//starting\ from\ sink,\ until\ the\ source}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ e\ =\ v-\/>getPath();\textcolor{comment}{//get\ edge\ of\ vertex\ v}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ n\_min\ =\ min(n\_min,\ e-\/>getCapacity()-\/e-\/>getFlow());\textcolor{comment}{//getting\ smaller\ one,\ the\ current\ max\ or\ the\ path\ found}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ v=e-\/>getOrig();\textcolor{comment}{//moving\ backwards\ -\/\ getting\ the\ original}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v=t\ ;\ v!=s;\ )\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ e\ =\ v-\/>getPath();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//adding\ flow\ to\ the\ forward\ edge}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>setFlow(e-\/>getFlow()\ +\ n\_min);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//setting\ flow\ to\ -\/>\ the\ initial\ flow\ at\ the\ edge+cureent\ min\ path}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//minus\ flow\ from\ the\ prev\ edge}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ rev\ =\ e-\/>getReverse();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rev!=\textcolor{keyword}{nullptr})\ rev-\/>setFlow(rev-\/>getFlow()\ -\/\ n\_min);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//setting\ flow\ to-\/>\ the\ prev\ flow-\/min\ path}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ v=e-\/>getOrig();}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ total\_flow\ +=\ n\_min;}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{return}\ total\_flow;}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DA\_PROJECT1\_ALGORITHM\_H}}
 
 \end{DoxyCode}

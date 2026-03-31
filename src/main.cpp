@@ -1,3 +1,10 @@
+/**
+* @file main.cpp
+ * @brief Entry point for the Graph-based Assignment System.
+ * @details Provides both an interactive menu-driven interface and a non-interactive
+ * batch mode for processing paper-reviewer assignments using max-flow algorithms.
+ */
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,6 +17,14 @@
 
 using namespace std;
 
+/**
+ * @brief Executes the assignment pipeline without user intervention.
+ * @details Parses the input, builds the flow network, runs Edmonds-Karp,
+ * and exports the results directly to a file.
+ * @param inputFile Path to the source CSV dataset.
+ * @param outputFile Path where the results should be saved.
+ * @param data Reference to the projectData structure to store parsed information.
+ */
 void runBatchMode(string inputFile, string outputFile, projectData& data) {
     //1.
     parser(inputFile, data);
@@ -68,6 +83,18 @@ void displayMenu() {
     cout << "--------------------------" << endl;
 }
 
+/**
+ * @brief Main execution loop.
+ * @details Handles command-line arguments for batch mode or launches the
+ * interactive terminal menu.
+ * * Usage (Batch Mode):
+ * @code
+ * ./program -b input.csv output.csv
+ * @endcode
+ * * @param argc Argument count.
+ * @param argv Argument vector.
+ * @return int Execution status (0 for success).
+ */
 int main(int argc, char* argv[]) {
     projectData data;
 

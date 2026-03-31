@@ -43,6 +43,15 @@ public:
      */
     static void output_file(projectData &data, Graph<int> &g);
 
+    /**
+     * @brief Identifies reviewers who are at "risk" or under-assigned.
+     * @details Analyzes the flow network to find reviewers whose current assignments
+     * are below a certain threshold or who are critical bottlenecks in the matching.
+     * @param data The projectData structure containing reviewer constraints.
+     * @param g The Graph containing the final flow results.
+     * @return A vector of integer IDs representing the reviewers at risk.
+     * @time_complexity O(V) where V is the number of reviewer nodes in the graph.
+     */
     static vector<int> risk_revs(projectData &data, Graph<int> g);
 };
 

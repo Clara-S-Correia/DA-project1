@@ -110,9 +110,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a17bbd0ba390db5084a4f0dc1968d322f" id="r_a17bbd0ba390db5084a4f0dc1968d322f"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
 <tr class="memitem:a17bbd0ba390db5084a4f0dc1968d322f template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a17bbd0ba390db5084a4f0dc1968d322f">BFS_part</a> (<a class="el" href="class_graph.html">Graph</a>&lt; T &gt; *g, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *s, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *t)</td></tr>
 <tr class="memdesc:a17bbd0ba390db5084a4f0dc1968d322f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds an augmenting path in the residual graph using Breadth-First Search.  <br /></td></tr>
-<tr class="memitem:aa3609a09123eb68f5b66d2899bb4dd8b" id="r_aa3609a09123eb68f5b66d2899bb4dd8b"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
-<tr class="memitem:aa3609a09123eb68f5b66d2899bb4dd8b template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa3609a09123eb68f5b66d2899bb4dd8b">Edmonds_karp</a> (<a class="el" href="class_graph.html">Graph</a>&lt; T &gt; *g, T source, T sink)</td></tr>
-<tr class="memdesc:aa3609a09123eb68f5b66d2899bb4dd8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Maximum Flow using the Edmonds-Karp algorithm.  <br /></td></tr>
+<tr class="memitem:a0ad6fdb302dbc189b60830cef635afb5" id="r_a0ad6fdb302dbc189b60830cef635afb5"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:a0ad6fdb302dbc189b60830cef635afb5 template"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a0ad6fdb302dbc189b60830cef635afb5">Edmonds_karp</a> (<a class="el" href="class_graph.html">Graph</a>&lt; T &gt; *g, T source, T sink)</td></tr>
+<tr class="memdesc:a0ad6fdb302dbc189b60830cef635afb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Maximum Flow using the Edmonds-Karp algorithm.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of the Edmonds-Karp algorithm for Maximum Flow. </p>
@@ -184,8 +184,8 @@ false If no more augmenting paths exist.</dd></dl>
 
 </div>
 </div>
-<a id="aa3609a09123eb68f5b66d2899bb4dd8b" name="aa3609a09123eb68f5b66d2899bb4dd8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3609a09123eb68f5b66d2899bb4dd8b">&#9670;&#160;</a></span>Edmonds_karp()</h2>
+<a id="a0ad6fdb302dbc189b60830cef635afb5" name="a0ad6fdb302dbc189b60830cef635afb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ad6fdb302dbc189b60830cef635afb5">&#9670;&#160;</a></span>Edmonds_karp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +193,7 @@ false If no more augmenting paths exist.</dd></dl>
 template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void Edmonds_karp </td>
+          <td class="memname">int Edmonds_karp </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_graph.html">Graph</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>g</em></span>, </td>
         </tr>

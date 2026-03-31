@@ -1,20 +1,6 @@
 # ninja log v6
 3	432	1774901001581165980	CMakeFiles/DA_project1.dir/src/code.cpp.o	ccce9c7f8f460a83
-2	518	1774901001581031855	CMakeFiles/DA_project1.dir/src/createGraph.cpp.o	c81c7c4d5ba046ea
 2	523	1774901001580883187	CMakeFiles/DA_project1.dir/src/parser.cpp.o	c7de43b9d378263d
-3	512	1774901335720967123	CMakeFiles/DA_project1.dir/src/main.cpp.o	eb8da22cf9716d4a
-512	603	1774901336230025766	DA_project1	fc8c5ed601f21636
-3	525	1774901640472532734	CMakeFiles/DA_project1.dir/src/main.cpp.o	eb8da22cf9716d4a
-525	612	1774901640994209880	DA_project1	fc8c5ed601f21636
-3	510	1774901740963571315	CMakeFiles/DA_project1.dir/src/main.cpp.o	eb8da22cf9716d4a
-510	600	1774901741470576410	DA_project1	fc8c5ed601f21636
-5	552	1774902322080734970	CMakeFiles/DA_project1.dir/src/main.cpp.o	eb8da22cf9716d4a
-552	643	1774902322627943033	DA_project1	fc8c5ed601f21636
-5	523	1774902423705941853	CMakeFiles/DA_project1.dir/src/main.cpp.o	eb8da22cf9716d4a
-523	617	1774902424224223196	DA_project1	fc8c5ed601f21636
-4	518	1774902508004214518	CMakeFiles/DA_project1.dir/src/main.cpp.o	eb8da22cf9716d4a
-518	609	1774902508518892142	DA_project1	fc8c5ed601f21636
-5	392	1774902544896019752	CMakeFiles/DA_project1.dir/src/main.cpp.o	eb8da22cf9716d4a
-392	429	1774902545282550669	DA_project1	fc8c5ed601f21636
 4	511	1774902655768260466	CMakeFiles/DA_project1.dir/src/main.cpp.o	eb8da22cf9716d4a
 512	604	1774902656275400065	DA_project1	fc8c5ed601f21636
+2	518	1774901001581031855	CMakeFiles/DA_project1.dir/src/createGraph.cpp.o	c81c7c4d5ba046ea

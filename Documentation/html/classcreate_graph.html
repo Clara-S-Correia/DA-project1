@@ -103,6 +103,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa77784249f6468a1d38876487f94f25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms parsed ProjectData into a directed Flow <a class="el" href="class_graph.html">Graph</a>.  <br /></td></tr>
 <tr class="memitem:a42fbbcd642d0782e83cfbf369717733d" id="r_a42fbbcd642d0782e83cfbf369717733d"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a42fbbcd642d0782e83cfbf369717733d">output_file</a> (<a class="el" href="structproject_data.html">projectData</a> &amp;data, <a class="el" href="class_graph.html">Graph</a>&lt; int &gt; &amp;g)</td></tr>
 <tr class="memdesc:a42fbbcd642d0782e83cfbf369717733d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports assignment results and risk analysis to a CSV file.  <br /></td></tr>
+<tr class="memitem:a97ca37f40b19f68e8a1e30d627ae3c25" id="r_a97ca37f40b19f68e8a1e30d627ae3c25"><td class="memItemLeft">static vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a97ca37f40b19f68e8a1e30d627ae3c25">risk_revs</a> (<a class="el" href="structproject_data.html">projectData</a> &amp;data, <a class="el" href="class_graph.html">Graph</a>&lt; int &gt; g)</td></tr>
+<tr class="memdesc:a97ca37f40b19f68e8a1e30d627ae3c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies reviewers who are at "risk" or under-assigned.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides static methods to transform project data into a flow network. </p>
@@ -182,6 +184,45 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <p>conditions in if if there is flow (&gt;0) edge is -&gt; a arev, moving to sub com higer id, since subs 1st then revs stops at revs - to not count sink</p>
+
+</div>
+</div>
+<a id="a97ca37f40b19f68e8a1e30d627ae3c25" name="a97ca37f40b19f68e8a1e30d627ae3c25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97ca37f40b19f68e8a1e30d627ae3c25">&#9670;&#160;</a></span>risk_revs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; createGraph::risk_revs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structproject_data.html">projectData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_graph.html">Graph</a>&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>g</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Identifies reviewers who are at "risk" or under-assigned. </p>
+<p>Analyzes the flow network to find reviewers whose current assignments are below a certain threshold or who are critical bottlenecks in the matching. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The <a class="el" href="structproject_data.html" title="The &quot;Master&quot; container that holds all project state.">projectData</a> structure containing reviewer constraints. </td></tr>
+    <tr><td class="paramname">g</td><td>The <a class="el" href="class_graph.html">Graph</a> containing the final flow results. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of integer IDs representing the reviewers at risk. @time_complexity O(V) where V is the number of reviewer nodes in the graph. </dd></dl>
 
 </div>
 </div>

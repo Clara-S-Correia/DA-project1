@@ -2,12 +2,11 @@
 	"configurations" : 
 	[
 		{
-			"abstractTargets" : [],
 			"directories" : 
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-9ad1a58d4644cf6543fa.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "4.0"
@@ -40,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "DA_project1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-DA_project1-Debug-740a84e0d01fd8ddd7d2.json",
+					"jsonFile" : "target-DA_project1-Debug-d71cae2aa9cf25136cba.json",
 					"name" : "DA_project1",
 					"projectIndex" : 0
 				}
@@ -50,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/esha-naveed/Desktop/DA_PT/DA-project1/cmake-build-debug",
-		"source" : "/home/esha-naveed/Desktop/DA_PT/DA-project1"
+		"build" : "/Users/claracorreia/Library/CloudStorage/OneDrive-UniversidadedoPorto/Uni/2\u00ba Ano/DA/project1/DA2026_PRJ1_T06_G3/cmake-build-debug",
+		"source" : "/Users/claracorreia/Library/CloudStorage/OneDrive-UniversidadedoPorto/Uni/2\u00ba Ano/DA/project1/DA2026_PRJ1_T06_G3"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 9
+		"minor" : 8
 	}
 }

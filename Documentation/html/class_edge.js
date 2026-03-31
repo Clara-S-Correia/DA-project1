@@ -6,6 +6,7 @@ var class_edge =
     [ "getFlow", "class_edge.html#a75458cfc838ca5aee5c34cb9f03b5647", null ],
     [ "getOrig", "class_edge.html#a40fc1470c5339203defca19b67c2535b", null ],
     [ "getReverse", "class_edge.html#af0a900f3006e47b9f363df7429298eeb", null ],
+    [ "setCapacity", "class_edge.html#a54eca8777e0bf937330b08963ef7ecd4", null ],
     [ "setFlow", "class_edge.html#a1819116e2c156733a14bbd94cc27908e", null ],
     [ "setReverse", "class_edge.html#afe8f8429025756c63f38e8c6fde7382c", null ],
     [ "capacity", "class_edge.html#af9c8f84f474104a3b1b283a4f932c34d", null ],

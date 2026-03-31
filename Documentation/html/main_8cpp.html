@@ -91,6 +91,9 @@ $(function(){initNavTree('main_8cpp.html','',''); });
   <div class="headertitle"><div class="title">main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Entry point for the Graph-based Assignment System.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
@@ -104,10 +107,15 @@ $(function(){initNavTree('main_8cpp.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:accc662345cce7d091187b84689ee24a4" id="r_accc662345cce7d091187b84689ee24a4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#accc662345cce7d091187b84689ee24a4">runBatchMode</a> (string inputFile, string outputFile, <a class="el" href="structproject_data.html">projectData</a> &amp;data)</td></tr>
+<tr class="memdesc:accc662345cce7d091187b84689ee24a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the assignment pipeline without user intervention.  <br /></td></tr>
 <tr class="memitem:a59c2926dd9b0968badf463aaf4f91422" id="r_a59c2926dd9b0968badf463aaf4f91422"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a59c2926dd9b0968badf463aaf4f91422">displayMenu</a> ()</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main execution loop.  <br /></td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Entry point for the Graph-based Assignment System. </p>
+<p>Provides both an interactive menu-driven interface and a non-interactive batch mode for processing paper-reviewer assignments using max-flow algorithms. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a59c2926dd9b0968badf463aaf4f91422" name="a59c2926dd9b0968badf463aaf4f91422"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a59c2926dd9b0968badf463aaf4f91422">&#9670;&#160;</a></span>displayMenu()</h2>
 
@@ -144,6 +152,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Main execution loop. </p>
+<p>Handles command-line arguments for batch mode or launches the interactive terminal menu.</p><ul>
+<li>Usage (Batch Mode): <div class="fragment"><div class="line">./program -b input.csv output.csv</div>
+</div><!-- fragment --></li>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>Argument count. </td></tr>
+    <tr><td class="paramname">argv</td><td>Argument vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int Execution status (0 for success). </dd></dl>
+</li>
+</ul>
+
 </div>
 </div>
 <a id="accc662345cce7d091187b84689ee24a4" name="accc662345cce7d091187b84689ee24a4"></a>
@@ -169,6 +192,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Executes the assignment pipeline without user intervention. </p>
+<p>Parses the input, builds the flow network, runs Edmonds-Karp, and exports the results directly to a file. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputFile</td><td>Path to the source CSV dataset. </td></tr>
+    <tr><td class="paramname">outputFile</td><td>Path where the results should be saved. </td></tr>
+    <tr><td class="paramname">data</td><td>Reference to the <a class="el" href="structproject_data.html" title="The &quot;Master&quot; container that holds all project state.">projectData</a> structure to store parsed information. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -6,5 +6,6 @@ var class_graph =
     [ "findVertexIdx", "class_graph.html#a676cdfb976eccfa82b631d2094c1cdac", null ],
     [ "getNumVertex", "class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71", null ],
     [ "getVertexSet", "class_graph.html#a41624b03fcb6bd29e4df574a1ec58541", null ],
+    [ "resetFlow", "class_graph.html#af9edd1a5523525f1c77c8b28871fb439", null ],
     [ "vertexSet", "class_graph.html#a26b3a6b9c61f02f5b2cd38ad4c6a4953", null ]
 ];
