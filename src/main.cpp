@@ -141,14 +141,14 @@ int main(int argc, char* argv[]) {
                 int S = 0;
                 int T = data.submissions.size() + data.reviewers.size() + 1;
 
-                Edmonds_karp(&flowGraph, S, T);
+                int matches = Edmonds_karp(&flowGraph, S, T);
 
                 cout << "\n--- ASSIGNMENT RESULTS ---" << endl;
                 for (int i = 1; i <= data.submissions.size(); ++i) {
                     Vertex<int>* v = flowGraph.findVertex(i);
                     if (!v) continue;
                     for (auto e : v->getAdj()) {
-                        if (e->getFlow() > 0 && e->getDest()->getInfo() != S) {
+                        if (e->getFlow() > 0 && e->getDest()->getInfo() > (int)data.submissions.size() && e->getDest()->getInfo() != T){
                             cout << "Sub " << data.nodeToRealID[i] << " -> Rev "
                                  << data.nodeToRealID[e->getDest()->getInfo()] << endl;
                             // Showing path details as per Task 1.1 requirement
@@ -156,7 +156,11 @@ int main(int argc, char* argv[]) {
                         }
                     }
                 }
-                cout << "\n[Success] Results exported to: " << data.config.outputFileName << endl;
+                cout << "\n[Success] Total Assignments: " << matches << endl;
+                cout << "[Success] Results exported to: " << data.config.outputFileName << endl;
+                if (data.config.riskAnalysis == 1) {
+                    cout << "[Info] Risk Analysis was performed and added to the CSV." << endl;
+                }
                 break;
             }
             case 0:

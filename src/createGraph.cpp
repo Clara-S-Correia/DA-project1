@@ -11,8 +11,20 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
-using namespace std;
 
+#include "algorithm.h"
+using namespace std;
+/*
+ *Risk Analysis:
+ *checking if there is actually a need of haivg a reviewer
+ *this check will only run if in control the risk ANalysis is 1
+ *otherwise NOPE!
+ *basically running the edmond-krap without a reviewer, if the flow is less than the actual flow
+ *the reviewer seems to be important and thius cannot get fired
+ *otherwise it's bye!bye!bye!
+ *welp technically (literally here!) it is added to the vector
+ *basicaly saving the data to print in out to the output file
+ */
 Graph<int> createGraph::buildGraph(projectData &data) {
     //basic info
     Graph<int> g;
@@ -92,6 +104,45 @@ Graph<int> createGraph::buildGraph(projectData &data) {
     return g;
 }
 
+vector<int> createGraph::risk_revs(projectData &data, Graph<int> g) {
+    int S =0;//source
+    int T =0;//sink
+
+    g.resetFlow();
+    int OG_max_flow = Edmonds_karp(&g, S, T);
+    vector<int> risk_rev_id;
+
+    //go through each rev - revs start after subs
+    int rev_start = data.submissions.size()+1;//revs start after subs
+    int rev_end = data.submissions.size() + data.reviewers.size();
+
+    for (int i = rev_start; i <= rev_end; i++) {
+        auto v = g.findVertex(i);
+        if (!v) continue;
+
+        //edges connecting teh rev to the T(sink)
+        for (auto e : v->getAdj()) {
+            //if the destination is the sink
+            if (e->getDest()->getInfo() == T) {
+                int rev_cap = e->getCapacity();//saving the cap
+                e->setCapacity(0);//removing the rev
+                g.resetFlow();//a brand new staaarrrtt~~
+
+                int newFlow=Edmonds_karp(&g, S, T);
+
+                //if the new flow is less than the OG max flow then the rev is sus
+                if (newFlow > OG_max_flow) risk_rev_id.push_back(data.nodeToRealID[i]);
+
+                e->setCapacity(rev_cap);//restoring the capacity to its full glory
+                break;
+            }
+        }
+        //sorting too! really?
+        sort(risk_rev_id.begin(), risk_rev_id.end());
+        return risk_rev_id;
+    }
+}
+
 void createGraph::output_file(projectData &data, Graph<int> &g) {
 
     //name of file
@@ -156,23 +207,32 @@ void createGraph::output_file(projectData &data, Graph<int> &g) {
     outFile << "#Total: " << count << endl;
 
     //last list
-    outFile << "#Submissions,Domain,Missing,Reviews" << endl;
-    for (int i = 1; i <= numSub; i++) {
-        auto v = g.findVertex(i);//for each sub mode
-        int curr_revs = 0;//counter for each sub
-
-        if (v) {
-            for (auto e : v->getAdj()) {
-                if (e->getFlow() > 0 && e->getDest()->getInfo() > numSub) curr_revs++;
-            }
+    if (data.config.riskAnalysis == 1) {
+        vector<int> risks = risk_revs(data, g);
+        outFile << "#Risk Analysis: 1" << endl;
+        for (size_t i = 0; i < risks.size(); i++) {
+            outFile << risks[i] << (i == risks.size() - 1 ? "" : ", ");
         }
+        outFile << endl;
+    }else {
+        outFile << "#Submissions,Domain,Missing,Reviews" << endl;
+        for (int i = 1; i <= numSub; i++) {
+            auto v = g.findVertex(i);//for each sub mode
+            int curr_revs = 0;//counter for each sub
 
-        //minus from needed to the one you got!
-        int missing = data.config.minReviewsPerSubmission - curr_revs;
+            if (v) {
+                for (auto e : v->getAdj()) {
+                    if (e->getFlow() > 0 && e->getDest()->getInfo() > numSub) curr_revs++;
+                }
+            }
 
-        //IF IF IF sub has less revs throw in with the RISKY files!!!
-        if (missing > 0) {
-            outFile << data.nodeToRealID[i] << "," << data.submissions[i-1].primary << "," << missing << endl;
+            //minus from needed to the one you got!
+            int missing = data.config.minReviewsPerSubmission - curr_revs;
+
+            //IF IF IF sub has less revs throw in with the RISKY files!!!
+            if (missing > 0) {
+                outFile << data.nodeToRealID[i] << "," << data.submissions[i-1].primary << "," << missing << endl;
+            }
         }
     }
 

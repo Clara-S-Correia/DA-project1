@@ -67,12 +67,14 @@ bool BFS_part(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
 }
 
 template <class T>
-void Edmonds_karp(Graph<T> *g, T source, T sink) {
+int Edmonds_karp(Graph<T> *g, T source, T sink) {
     Vertex<T> *s = g->getVertex(source);
     Vertex<T> *t = g->getVertex(sink);
 
     //in case parser fails, findVertex will return nullptr thuis checking
-    if (s==nullptr || t==nullptr) return;
+    if (s==nullptr || t==nullptr) return 0;
+
+    int total_flow = 0;
 
     //while bfs(graph, source, sink)
     while (BFS_part(g, s, t)) {
@@ -87,7 +89,7 @@ void Edmonds_karp(Graph<T> *g, T source, T sink) {
         }
 
         for (auto v=t ; v!=s; ) {
-            auto e = v->setPath();
+            auto e = v->getPath();
             //adding flow to the forward edge
             e->setFlow(e->getFlow() + n_min);
             //setting flow to -> the initial flow at the edge+cureent min path
@@ -99,5 +101,8 @@ void Edmonds_karp(Graph<T> *g, T source, T sink) {
 
             v=e->getOrig();
         }
+        total_flow += n_min;
     }
+
+    return total_flow;
 }

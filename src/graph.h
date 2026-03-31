@@ -53,6 +53,7 @@ public:
 
     void setFlow(double flow);
     void setReverse(Edge<T> *reverse);
+    void setCapacity(int capacity);
 
 protected:
     Vertex<T> * orig;
@@ -94,7 +95,7 @@ public:
      * * @time_complexity O(V) due to findVertex calls (scanning the vertex set).
      */
     bool addFlowEdge(const T &sourc, const T &dest, double cap);
-
+    void resetFlow();
     int getNumVertex() const;
     std::vector<Vertex<T> *> getVertexSet() const;
 
@@ -158,6 +159,9 @@ void Edge<T>::setReverse(Edge<T> *reverse) { this->reverse = reverse; }
 template <class T>
 void Edge<T>::setFlow(double flow) { this->flow = flow; }
 
+template <class T>
+void Edge<T>::setCapacity(int capacity) { this->capacity = capacity; }
+
 /********************** Graph  ****************************/
 
 template <class T>
@@ -204,6 +208,15 @@ bool Graph<T>::addFlowEdge(const T &sourc, const T &dest, double cap) {
     e1->setReverse(e2);
     e2->setReverse(e1);
     return true;
+}
+
+template <class T>
+void Graph<T>::resetFlow() {
+    for (auto v : vertexSet) {
+        for (auto e : v->getAdj()) {
+            e->setFlow(0);
+        }
+    }
 }
 
 #endif //DA_PROJECT1_GRAPH_H

@@ -101,12 +101,14 @@ bool BFS_part(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
  * @space_complexity O(V) for the queue and path tracking used in BFS.
  */
 template <class T>
-void Edmonds_karp(Graph<T> *g, T source, T sink) {
+int Edmonds_karp(Graph<T> *g, T source, T sink) {
     Vertex<T> *s = g->findVertex(source);
     Vertex<T> *t = g->findVertex(sink);
 
     //in case parser fails, findVertex will return nullptr thuis checking
-    if (s==nullptr || t==nullptr) return;
+    if (s==nullptr || t==nullptr) return 0;
+
+    int total_flow = 0;
 
     //while bfs(graph, source, sink)
     while (BFS_part(g, s, t)) {
@@ -133,7 +135,9 @@ void Edmonds_karp(Graph<T> *g, T source, T sink) {
 
             v=e->getOrig();
         }
+        total_flow += n_min;
     }
+    return total_flow;
 }
 
 

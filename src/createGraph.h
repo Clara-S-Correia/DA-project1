@@ -42,6 +42,8 @@ public:
      * @time_complexity O(V + E) to traverse the graph and check edge flows.
      */
     static void output_file(projectData &data, Graph<int> &g);
+
+    static vector<int> risk_revs(projectData &data, Graph<int> g);
 };
 
 #endif //DA_PROJECT1_CREATEGRAPH_H
