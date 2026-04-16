@@ -2,11 +2,12 @@
 	"configurations" : 
 	[
 		{
+			"abstractTargets" : [],
 			"directories" : 
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Debug-9ad1a58d4644cf6543fa.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "4.0"
@@ -27,7 +28,7 @@
 					[
 						0
 					],
-					"name" : "DA_project1",
+					"name" : "DA2026_PRJ1_T06_G03",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +39,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "DA_project1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-DA_project1-Debug-d71cae2aa9cf25136cba.json",
-					"name" : "DA_project1",
+					"id" : "DA2026_PRJ1_T06_G03::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-DA2026_PRJ1_T06_G03-Debug-6ba4572beec8413111aa.json",
+					"name" : "DA2026_PRJ1_T06_G03",
 					"projectIndex" : 0
 				}
 			]
@@ -49,12 +50,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/claracorreia/Library/CloudStorage/OneDrive-UniversidadedoPorto/Uni/2\u00ba Ano/DA/project1/DA2026_PRJ1_T06_G3/cmake-build-debug",
-		"source" : "/Users/claracorreia/Library/CloudStorage/OneDrive-UniversidadedoPorto/Uni/2\u00ba Ano/DA/project1/DA2026_PRJ1_T06_G3"
+		"build" : "/home/esha-naveed/Desktop/DA_PT/DA2026_PRJ1_T06_G03/cmake-build-debug",
+		"source" : "/home/esha-naveed/Desktop/DA_PT/DA2026_PRJ1_T06_G03"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 8
+		"minor" : 9
 	}
 }

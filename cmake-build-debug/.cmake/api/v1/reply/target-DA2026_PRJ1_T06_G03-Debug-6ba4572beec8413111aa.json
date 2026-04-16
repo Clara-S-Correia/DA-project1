@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "DA_project1"
+			"path" : "DA2026_PRJ1_T06_G03"
 		}
 	],
 	"backtrace" : 1,
@@ -29,13 +29,18 @@
 			}
 		]
 	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
 	"compileGroups" : 
 	[
 		{
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17 -arch arm64 -fcolor-diagnostics"
+					"fragment" : "-g -fdiagnostics-color=always"
 				}
 			],
 			"language" : "CXX",
@@ -56,7 +61,7 @@
 			]
 		}
 	],
-	"id" : "DA_project1::@6890427a1f51a3e7e1df",
+	"id" : "DA2026_PRJ1_T06_G03::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -68,8 +73,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "DA_project1",
-	"nameOnDisk" : "DA_project1",
+	"name" : "DA2026_PRJ1_T06_G03",
+	"nameOnDisk" : "DA2026_PRJ1_T06_G03",
 	"paths" : 
 	{
 		"build" : ".",

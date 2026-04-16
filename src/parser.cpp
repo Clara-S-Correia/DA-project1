@@ -46,7 +46,7 @@ void parser(const string& filename, projectData& data) {
 
         try {
             //checking row.size() to make sure there is stuff there
-            if (mode == 1 && row.size() >= 6) {
+            if (mode == 1 && row.size() >= 5) {
                 Submission s;
                 s.id = stoi(row[0]);
                 s.primary = stoi(row[4]);
@@ -56,8 +56,9 @@ void parser(const string& filename, projectData& data) {
                     s.secondary = 0;
                 }
                 data.submissions.push_back(s);
+                data.nodeToRealID[data.submissions.size()] = s.id;
             }
-            else if (mode == 2 && row.size() >= 5) {
+            else if (mode == 2 && row.size() >= 4) {
                 Reviewers r;
                 r.id = stoi(row[0]);
                 r.primary = stoi(row[3]);
@@ -67,6 +68,8 @@ void parser(const string& filename, projectData& data) {
                     r.secondary = 0;
                 }
                 data.reviewers.push_back(r);
+                int revNodeIdx = data.submissions.size() + data.reviewers.size();
+                data.nodeToRealID[revNodeIdx] = r.id;
             }
             else if (mode == 3 || mode == 4) {
                 if (row.size() < 2) continue;

@@ -70,6 +70,7 @@ void runBatchMode(string inputFile, string outputFile, projectData& data) {
     createGraph::output_file(data, flowGraph);
 
     cout << "[Success] Batch execution complete. Results saved to " << outputFile << endl;
+
 }
 
 void displayMenu() {
@@ -101,9 +102,16 @@ int main(int argc, char* argv[]) {
     // --- BATCH MODE CHECK ---
     // Syntax: myProg -b input.csv output.csv
     if (argc >= 4 && string(argv[1]) == "-b") {
-        string inputFile = argv[2];
-        string outputFile = argv[3];
-        runBatchMode(inputFile, outputFile, data);
+        int files = argc;
+        string outputFile = argv[files-1];
+        for (int i=2; i<argc-1; i++) {
+            string inputFile = argv[i];
+            cout << "[Batch] Processing: " << inputFile << " -> " << outputFile << endl;
+            data.submissions.clear();
+            data.reviewers.clear();
+            data.nodeToRealID.clear();
+            runBatchMode(inputFile, outputFile, data);
+        }
         return 0; // Exit after batch processing
     }
 
@@ -160,7 +168,9 @@ int main(int argc, char* argv[]) {
                 cout << "[Success] Network constructed." << endl;
                 break;
             }
+                /*
             case 3: {
+                /*
                 if (!graphBuilt) {
                     cout << "[Error] Build graph first (Option 2)." << endl;
                     break;
@@ -175,11 +185,10 @@ int main(int argc, char* argv[]) {
                     Vertex<int>* v = flowGraph.findVertex(i);
                     if (!v) continue;
                     for (auto e : v->getAdj()) {
-                        if (e->getFlow() > 0 && e->getDest()->getInfo() > (int)data.submissions.size() && e->getDest()->getInfo() != T){
-                            cout << "Sub " << data.nodeToRealID[i] << " -> Rev "
-                                 << data.nodeToRealID[e->getDest()->getInfo()] << endl;
-                            // Showing path details as per Task 1.1 requirement
-                            cout << "   [Path: 0 -> " << i << " -> " << e->getDest()->getInfo() << " -> " << T << "]" << endl;
+                        if (e->getFlow() > 0 && e->getDest()->getInfo() > (int)data.submissions.size() && e->getDest()->getInfo() <= (int)(data.submissions.size() + data.reviewers.size())) {
+                            cout << "Sub " << data.nodeToRealID[i] << " -> Rev " << data.nodeToRealID[e->getDest()->getInfo()] << endl;
+                           // Essential for Task 1.1:
+                           cout << "   [Path: 0 -> " << i << " -> " << e->getDest()->getInfo() << " -> " << T << "]" << endl;
                         }
                     }
                 }
@@ -189,7 +198,144 @@ int main(int argc, char* argv[]) {
                     cout << "[Info] Risk Analysis was performed and added to the CSV." << endl;
                 }
                 break;
+                if (!graphBuilt) {
+                cout << "[Error] Build graph first (Option 2)." << endl;
+                break;
             }
+                int S = 0;
+                int T = data.submissions.size() + data.reviewers.size() + 1;
+                int numSub = data.submissions.size();
+                int numRev = data.reviewers.size();
+
+                int totalMatches = Edmonds_karp(&flowGraph, S, T);
+
+                // 1. Print Submission -> Reviewer Assignments
+                cout << "#SubmissionId,ReviewerId,Match" << endl;
+                for (int i = 1; i <= numSub; i++) {
+                    Vertex<int>* v = flowGraph.findVertex(i);
+                    if (!v) continue;
+                    for (auto e : v->getAdj()) {
+                        if (e->getFlow() > 0 && e->getDest()->getInfo() > numSub && e->getDest()->getInfo() <= (numSub + numRev)) {
+                            cout << data.nodeToRealID[i] << ", "
+                                 << data.nodeToRealID[e->getDest()->getInfo()] << ", "
+                                 << data.submissions[i-1].primary << endl;
+                        }
+                    }
+                }
+
+                // 2. Print Reviewer -> Submission Assignments
+                cout << "#ReviewerId,SubmissionId,Match" << endl;
+                for (int j = 0; j < numRev; j++) {
+                    int revNodeID = numSub + j + 1;
+                    // We look at all submission nodes to see who sent flow to this reviewer
+                    for (int i = 1; i <= numSub; i++) {
+                        Vertex<int>* subV = flowGraph.findVertex(i);
+                        if (!subV) continue;
+                        for (auto e : subV->getAdj()) {
+                            if (e->getDest()->getInfo() == revNodeID && e->getFlow() > 0) {
+                                cout << data.nodeToRealID[revNodeID] << ", "
+                                     << data.nodeToRealID[i] << ", "
+                                     << data.reviewers[j].primary << endl;
+                            }
+                        }
+                    }
+                }
+
+                // 3. Print Total
+                cout << "#Total: " << totalMatches << endl;
+
+                // 4. Print Missing Reviews
+                cout << "#SubmissionId,Domain,MissingReviews" << endl;
+                for (int i = 1; i <= numSub; i++) {
+                    Vertex<int>* v = flowGraph.findVertex(i);
+                    int currentFlow = 0;
+                    if (v) {
+                        for (auto e : v->getAdj()) {
+                            if (e->getFlow() > 0 || e->getDest()->getInfo() > numSub || e->getDest()->getInfo() <= (numSub + numRev)) {
+                                currentFlow += (int)e->getFlow();
+                            }
+                        }
+                    }
+                    int missing = data.config.minReviewsPerSubmission - currentFlow;
+                    if (missing > 0) {
+                        cout << data.nodeToRealID[i] << ", "
+                             << data.submissions[i-1].primary << ", "
+                             << missing << endl;
+                    }
+                }
+                break;
+            }
+            */
+                case 3: {
+    if (!graphBuilt) {
+        cout << "[Error] Build graph first (Option 2)." << endl;
+        break;
+    }
+    int S = 0;
+    int T = data.submissions.size() + data.reviewers.size() + 1;
+    int numSub = data.submissions.size();
+    int numRev = data.reviewers.size();
+
+    int totalMatches = Edmonds_karp(&flowGraph, S, T);
+
+    // 1. Print Submission -> Reviewer Assignments
+    cout << "#SubmissionId,ReviewerId,Match" << endl;
+    for (int i = 1; i <= numSub; i++) {
+        Vertex<int>* v = flowGraph.findVertex(i);
+        if (!v) continue;
+        for (auto e : v->getAdj()) {
+            // FIX: Use && (AND) to ensure it HAS flow AND is pointing to a Reviewer
+            if (e->getFlow() > 0 && e->getDest()->getInfo() > numSub && e->getDest()->getInfo() <= (numSub + numRev)) {
+                cout << data.nodeToRealID[i] << ", "
+                     << data.nodeToRealID[e->getDest()->getInfo()] << ", "
+                     << data.submissions[i-1].primary << endl;
+            }
+        }
+    }
+
+    // 2. Print Reviewer -> Submission Assignments
+    cout << "#ReviewerId,SubmissionId,Match" << endl;
+    for (int j = 0; j < numRev; j++) {
+        int revNodeID = numSub + j + 1;
+        for (int i = 1; i <= numSub; i++) {
+            Vertex<int>* subV = flowGraph.findVertex(i);
+            if (!subV) continue;
+            for (auto e : subV->getAdj()) {
+                // Check if this specific submission node sent flow to the current reviewer
+                if (e->getDest()->getInfo() == revNodeID && e->getFlow() > 0) {
+                    cout << data.nodeToRealID[revNodeID] << ", "
+                         << data.nodeToRealID[i] << ", "
+                         << data.reviewers[j].primary << endl;
+                }
+            }
+        }
+    }
+
+    // 3. Print Total
+    cout << "#Total: " << totalMatches << endl;
+
+    // 4. Print Missing Reviews
+    cout << "#SubmissionId,Domain,MissingReviews" << endl;
+    for (int i = 1; i <= numSub; i++) {
+        Vertex<int>* v = flowGraph.findVertex(i);
+        int currentFlow = 0;
+        if (v) {
+            for (auto e : v->getAdj()) {
+                // FIX: Use && (AND) to count only actual assigned flows
+                if (e->getFlow() > 0 && e->getDest()->getInfo() > numSub && e->getDest()->getInfo() <= (numSub + numRev)) {
+                    currentFlow += (int)e->getFlow();
+                }
+            }
+        }
+        int missing = data.config.minReviewsPerSubmission - currentFlow;
+        if (missing > 0) {
+            cout << data.nodeToRealID[i] << ", "
+                 << data.submissions[i-1].primary << ", "
+                 << missing << endl;
+        }
+    }
+    break;
+}
             case 0:
                 cout << "Exiting application." << endl;
                 break;

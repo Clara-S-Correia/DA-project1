@@ -68,8 +68,8 @@ bool BFS_part(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
 
 template <class T>
 int Edmonds_karp(Graph<T> *g, T source, T sink) {
-    Vertex<T> *s = g->getVertex(source);
-    Vertex<T> *t = g->getVertex(sink);
+    Vertex<T> *s = g->findVertex(source);
+    Vertex<T> *t = g->findVertex(sink);
 
     //in case parser fails, findVertex will return nullptr thuis checking
     if (s==nullptr || t==nullptr) return 0;

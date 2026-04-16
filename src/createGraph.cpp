@@ -80,6 +80,16 @@ Graph<int> createGraph::buildGraph(projectData &data) {
             }
             else if (data.config.generateAssignments == 3) {
                 //3: either rev to either sub with parameters from the 4 other things
+
+                // Check if match is possible based on toggled expertise/domain
+                bool pMatch = (data.config.primarySubmissionDomain == 1 && data.config.primaryReviewerExpertise == 1 && sub.primary == rev.primary);
+                bool sMatch = (data.config.secondarySubmissionDomain == 1 && data.config.primaryReviewerExpertise == 1 && sub.secondary == rev.primary);
+                bool prMatch = (data.config.primarySubmissionDomain == 1 && data.config.secondaryReviewerExpertise == 1 && sub.primary == rev.secondary);
+                bool srMatch = (data.config.secondarySubmissionDomain == 1 && data.config.secondaryReviewerExpertise == 1 && sub.secondary == rev.secondary);
+
+                if (pMatch || sMatch || prMatch || srMatch) match = true;
+            }
+                /*
                 //checking for the 4 parameters:
                 bool pSub = (data.config.primarySubmissionDomain == 1);
                 bool sSub = (data.config.secondarySubmissionDomain == 1);
@@ -91,14 +101,13 @@ Graph<int> createGraph::buildGraph(projectData &data) {
                 if (sSub && pRev && sub.secondary == rev.primary) match = true;
                 if (pSub && sRev && sub.primary == rev.secondary) match = true;
                 if (sSub && sRev && sub.secondary == rev.secondary) match = true;
-            }
+                */
 
             if (match) {
                 //capacity:paper to review - 1, one paper goes to one reviewer, one rev can take many subs
                 g.addFlowEdge(i + 1, numSub + j + 1, 1);
-
-
             }
+            else match=true;
         }
     }
     return g;
@@ -106,7 +115,7 @@ Graph<int> createGraph::buildGraph(projectData &data) {
 
 vector<int> createGraph::risk_revs(projectData &data, Graph<int> g) {
     int S =0;//source
-    int T =0;//sink
+    int T = data.submissions.size() + data.reviewers.size() + 1;//sink
 
     g.resetFlow();
     int OG_max_flow = Edmonds_karp(&g, S, T);
@@ -131,16 +140,16 @@ vector<int> createGraph::risk_revs(projectData &data, Graph<int> g) {
                 int newFlow=Edmonds_karp(&g, S, T);
 
                 //if the new flow is less than the OG max flow then the rev is sus
-                if (newFlow > OG_max_flow) risk_rev_id.push_back(data.nodeToRealID[i]);
+                if (newFlow < OG_max_flow) risk_rev_id.push_back(data.nodeToRealID[i]);
 
                 e->setCapacity(rev_cap);//restoring the capacity to its full glory
                 break;
             }
         }
-        //sorting too! really?
-        sort(risk_rev_id.begin(), risk_rev_id.end());
-        return risk_rev_id;
-    }
+            }
+    //sorting too! really?
+    sort(risk_rev_id.begin(), risk_rev_id.end());
+    return risk_rev_id;
 }
 
 void createGraph::output_file(projectData &data, Graph<int> &g) {
@@ -161,7 +170,7 @@ void createGraph::output_file(projectData &data, Graph<int> &g) {
 
     //subs list
     outFile << "#Submissions,Reviewer,Match" << endl;
-    for (int i=1; i<numSub; i++) {
+    for (int i=1; i<=numSub; i++) {
         auto v = g.findVertex(i);//get vertex
 
         if (!v) continue;//if not, dude move on
@@ -173,7 +182,9 @@ void createGraph::output_file(projectData &data, Graph<int> &g) {
              * stops at revs - to not count sink
              */
             if ((e->getFlow() > 0) && (e->getDest()->getInfo() > numSub) && (e->getDest()->getInfo() <= (numSub + numRev))) {
-                outFile << data.nodeToRealID[i] << "," << data.nodeToRealID[e->getDest()->getInfo()] << "," << data.submissions[i-1].primary << endl;
+                //outFile << data.nodeToRealID[i] << "," << data.nodeToRealID[e->getDest()->getInfo()] << "," << data.submissions[i-1].primary << endl;
+                int reviewerNodeID = e->getDest()->getInfo();
+                outFile << data.nodeToRealID[i] << "," << data.nodeToRealID[reviewerNodeID] << "," << data.submissions[i-1].primary << endl;
                 count++;
             }
         }
@@ -181,7 +192,18 @@ void createGraph::output_file(projectData &data, Graph<int> &g) {
 
     outFile << "#Reviewer,Submission,Match" << endl;
     for (int j=0; j<numRev; j++) {
+        int revNodeID = numSub + j + 1;
+        for (int i = 1; i <= numSub; i++) {
+            auto subV = g.findVertex(i);
+            if (!subV) continue;
+            for (auto e : subV->getAdj()) {
+                if (e->getDest()->getInfo() == revNodeID && e->getFlow() > 0) {
+                    outFile << data.nodeToRealID[revNodeID] << "," << data.nodeToRealID[i] << "," << data.reviewers[j].primary << endl;
+                }
+            }
+        }
         //S->sub->rev->t
+/*
         int revNodeIdx = numSub + j + 1;//starting from subs+1
 
         auto v = g.findVertex(revNodeIdx);//vertex of THIS rev
@@ -190,17 +212,17 @@ void createGraph::output_file(projectData &data, Graph<int> &g) {
         for (auto vertex : g.getVertexSet()) {//in each vertex
             /*condition
              * for verteices between 1 and sub
-             */
+             *
             if ((vertex->getInfo() >= 1) && (vertex->getInfo() <= numSub)) {
                 //edges FROM a specific sub
                 for (auto e : vertex->getAdj()) {
                     //if edge points at the cureent rev
                     if ((e->getDest() == v) && (e->getFlow() > 0)) {
-                        outFile << data.nodeToRealID[revNodeIdx] << "," << data.nodeToRealID[vertex->getInfo()] << "," << data.reviewers[j-1].primary << endl;
+                        outFile << data.nodeToRealID[revNodeIdx] << "," << data.nodeToRealID[vertex->getInfo()] << "," << data.reviewers[j].primary << endl;
                     }
                 }
             }
-        }
+        }*/
     }
 
     //totaL print
